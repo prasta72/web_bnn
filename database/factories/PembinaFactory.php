@@ -15,7 +15,6 @@ class PembinaFactory extends Factory
      */
     public function definition()
     {
-        
         return [
             'admin_id' => Admin::factory()->create()->id,
             'alamat' => $this->faker->address(),

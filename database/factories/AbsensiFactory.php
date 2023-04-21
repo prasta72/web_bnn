@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\kerjaPraktek;
+use App\Models\KerjaPraktek;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AbsensiFactory extends Factory
@@ -15,7 +15,7 @@ class AbsensiFactory extends Factory
     public function definition()
     {
         return [
-            'kerjapraktek_id' => kerjaPraktek::factory()->create()->id,
+            'kerjapraktek_id' => KerjaPraktek::factory()->create()->id,
             'waktu' => $this->faker->dateTime(),
             'kehadiran' => 'hadir' ,
             'status' =>  '-',

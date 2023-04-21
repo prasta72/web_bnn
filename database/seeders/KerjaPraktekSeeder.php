@@ -13,6 +13,6 @@ class KerjaPraktekSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\kerjaPraktek::factory(7)->create();
+        \App\Models\KerjaPraktek::factory(7)->create();
     }
 }
