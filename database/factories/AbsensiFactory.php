@@ -15,7 +15,7 @@ class AbsensiFactory extends Factory
     public function definition()
     {
         return [
-            'kerjapraktek_id' => kerjaPraktek::factory()->create()->id,
+            'kerjapraktek_id' => KerjaPraktek::factory()->create()->id,
             'waktu' => $this->faker->dateTime(),
             'kehadiran' => 'hadir' ,
             'status' =>  '-',
