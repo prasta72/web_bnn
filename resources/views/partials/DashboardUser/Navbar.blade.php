@@ -4,7 +4,7 @@
 
     <!-- logo -->
     <div class="flex-none w-56 flex flex-row items-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/IU_posing_for_Marie_Claire_Korea_March_2022_issue_03.jpg" class="w-10 flex-none">
+        <img src="{{ asset('/img/bnn.png') }}" class="w-10 flex-none">
         <strong class="capitalize ml-1 flex-1">BNN BALI</strong>
 
         <button id="sliderBtn" class="flex-none text-right text-gray-900 hidden md:block">
