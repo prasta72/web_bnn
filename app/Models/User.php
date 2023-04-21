@@ -47,7 +47,7 @@ class User extends Authenticatable
     }
     public function kegiatan()
     {
-    	return $this->hasOne('App\Models\kegiatan');
+    	return $this->hasOne('App\Models\Kegiatan');
     }
     public function nilai()
     {

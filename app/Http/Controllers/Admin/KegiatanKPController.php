@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\kegiatan;
+use App\Models\Kegiatan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -103,7 +103,7 @@ class KegiatanKPController extends Controller
                 'date' => 'required|date',
                ]);
                $date = Carbon::parse($request->date);
-             
+
                $kegiatankp = kegiatan::whereDate('waktu','=',$date->format('y-m-d'))->orderBy('created_at', 'asc')->paginate(10);
                return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
         } catch (\Exception $e) {
