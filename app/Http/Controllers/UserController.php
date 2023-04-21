@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\kerjaPraktek;
+use App\Models\KerjaPraktek;
 use App\Models\Pembina;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,11 +14,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = kerjaPraktek::where('user_id', '=', auth()->user()->id)->get();
+        $data = KerjaPraktek::where('user_id', '=', auth()->user()->id)->get();
         if ($data->isEmpty()) {
             return view('pages.user.daftarkp.index');
         } else {
-            $data = kerjaPraktek::with('pembina.admin')->where('user_id', '=' ,auth()->user()->id)->first();
+            $data = KerjaPraktek::with('pembina.admin')->where('user_id', '=' ,auth()->user()->id)->first();
 
             return view('pages.user.userDashboard', compact('data'));
         }
@@ -36,7 +36,7 @@ class UserController extends Controller
                 'mulai_kerja_praktek' => 'required',
                 'selesai_kerja_praktek' => 'required',
             ]);
-            kerjaPraktek::create([
+            KerjaPraktek::create([
                 'user_id' => auth()->user()->id,
                 'pembina_id' => Pembina::all()->random()->id,
                 'NIM' => $request->NIM,
@@ -60,7 +60,7 @@ class UserController extends Controller
 
 
 
-    
+
     public function daftarUser(){
         return view('pages.user.daftarkp.daftaruser');
     }
@@ -82,7 +82,7 @@ class UserController extends Controller
                 'mulai_kerja_praktek' => 'required',
                 'selesai_kerja_praktek' => 'required',
             ]);
-            kerjaPraktek::create([
+            KerjaPraktek::create([
                 'user_id' => $user_id->id + 1,
                 'pembina_id' => Pembina::all()->random()->id,
                 'NIM' => $request->NIM,

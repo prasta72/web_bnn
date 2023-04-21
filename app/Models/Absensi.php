@@ -16,6 +16,6 @@ class Absensi extends Model
     ];
     public function kerjapraktek()
     {
-    	return $this->belongsTo('App\Models\kerjaPraktek');
+    	return $this->belongsTo('App\Models\KerjaPraktek');
     }
 }

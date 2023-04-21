@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\kerjaPraktek;
+use App\Models\KerjaPraktek;
 use App\Models\Pembina;
 use Illuminate\Http\Request;
 
@@ -62,7 +62,7 @@ class KerjaPraktekController extends Controller
 
     public function destroy($id)
     {
-        $kerjapraktek =kerjaPraktek::findOrFail($id);
+        $kerjapraktek =KerjaPraktek::findOrFail($id);
         $kerjapraktek->delete();
         if ($kerjapraktek) {
             return redirect()
@@ -88,7 +88,7 @@ class KerjaPraktekController extends Controller
     {
         try {
             $cari = $request->keyword;
-            $kerjapraktek = kerjaPraktek::whereHas('user', function ($query) use ($cari) {
+            $kerjapraktek = KerjaPraktek::whereHas('user', function ($query) use ($cari) {
                 $query->where('nama_lengkap', 'like', '%' . $cari . '%');
             })->orWhere(function ($query) use ($cari) {
                 $query->where('NIM', 'LIKE', '%' . $cari . '%')

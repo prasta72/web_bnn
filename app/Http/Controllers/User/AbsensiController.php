@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
-use App\Models\kerjaPraktek;
+use App\Models\KerjaPraktek;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,7 +19,7 @@ class AbsensiController extends Controller
     }
     public function create()
     {
-        $absensi = kerjaPraktek::with('user')->where('user_id', '=', auth()->user()->id)->first();
+        $absensi = KerjaPraktek::with('user')->where('user_id', '=', auth()->user()->id)->first();
         return view('pages.user.absensi.create', compact('absensi'));
     }
     public function store(Request $request)
@@ -42,17 +42,17 @@ class AbsensiController extends Controller
             return back()->with(['errors' => $e->getMessage()]);
         }
     }
-   
+
 
     public function searchDate(Request $request){
-        
+
         $this->validate($request,[
             'date' => 'required|date',
            ]);
            $date = Carbon::parse($request->date);
-         
+
            $absensi = Absensi::whereDate('waktu','=',$date->format('y-m-d'))->orderBy('created_at', 'asc')->paginate(10);
            return view('pages.user.absensi.index', compact('absensi'));
-         
+
     }
 }

@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
     public function kerjapraktek()
     {
-    	return $this->hasOne('App\Models\kerjaPraktek');
+    	return $this->hasOne('App\Models\KerjaPraktek');
     }
     public function kegiatan()
     {

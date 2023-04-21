@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\kerjaPraktek;
+use App\Models\KerjaPraktek;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class KerjaPraktekController extends Controller
 {
    public function index(){
-    $kerjapraktek = kerjaPraktek::with(['user','pembina.admin'])->where('user_id', '=', auth()->user()->id)->get();
+    $kerjapraktek = KerjaPraktek::with(['user','pembina.admin'])->where('user_id', '=', auth()->user()->id)->get();
     // dd($kerjapraktek);
      return view('pages.user.kerjapraktek.index', compact('kerjapraktek'));
    }
-   public function edit(kerjaPraktek $kerjapraktek, $id)
+   public function edit(KerjaPraktek $kerjapraktek, $id)
    {
        // dd($request);
-       $kerjapraktek = kerjaPraktek::findorFail($id);
+       $kerjapraktek = KerjaPraktek::findorFail($id);
        return view('pages.user.kerjapraktek.update', compact('kerjapraktek'));
    }
    public function update(Request $request, $id)
@@ -34,7 +34,7 @@ class KerjaPraktekController extends Controller
             'mulai_kerja_praktek' => 'required',
             'selesai_kerja_praktek' => 'required',
            ]);
-           $kerjapraktek = kerjaPraktek::findOrFail($id);
+           $kerjapraktek = KerjaPraktek::findOrFail($id);
            $kerjapraktek->alamat = $request->alamat;
            $kerjapraktek->no_hp = $request->no_hp;
            $kerjapraktek->instansi = $request->instansi;

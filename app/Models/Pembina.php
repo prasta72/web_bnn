@@ -21,6 +21,6 @@ class Pembina extends Model
     }
     public function kerjapraktek()
     {
-    	return $this->hasOne('App\Models\kerjaPraktek');
+    	return $this->hasOne('App\Models\KerjaPraktek');
     }
 }
