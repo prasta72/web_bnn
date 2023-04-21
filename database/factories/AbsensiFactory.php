@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\kerjaPraktek;
+use App\Models\KerjaPraktek;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AbsensiFactory extends Factory
