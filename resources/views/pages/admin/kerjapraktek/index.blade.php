@@ -96,7 +96,7 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->pembina->admin->nama }}
+                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->pembina->nama_pembina }}
                                             </div>
                                         </td>
 
@@ -114,11 +114,11 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->pembina->bidang_kerja}}
+                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->bidang_kerja}}
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->pembina->status }}
+                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->status }}
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">

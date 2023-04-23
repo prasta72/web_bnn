@@ -24,7 +24,7 @@ class KerjaPraktekController extends Controller
     {
         // dd($request);
         $data =KerjaPraktek::with(['user','pembina'])->findorFail($id);
-        $pembina =Pembina::with('admin')->get();
+        $pembina =Pembina::all();
         return view('pages.admin.kerjapraktek.update', compact('data','pembina'));
     }
     public function update(Request $request, $id)
@@ -34,6 +34,8 @@ class KerjaPraktekController extends Controller
             $this->validate($request, [
                 'user_id' => 'required', 'string', 'max:255',
                 'pembina_id' => 'required', 'string', 'max:255',
+                'status' => 'required', 'string', 'max:255',
+                'bidang_kerja' => 'required', 'string', 'max:255',
                 'NIM' => 'required', 'string', 'max:255',
                 'alamat' => 'required', 'string', 'max:255',
                 'no_hp' => 'required', 'string', 'max:255',
@@ -46,6 +48,8 @@ class KerjaPraktekController extends Controller
             $kerjapraktek->user_id = $request->user_id;
             $kerjapraktek->pembina_id = $request->pembina_id;
             $kerjapraktek->NIM = $request->NIM;
+            $kerjapraktek->bidang_kerja = $request->bidang_kerja;
+            $kerjapraktek->status = $request->status;
             $kerjapraktek->alamat = $request->alamat;
             $kerjapraktek->no_hp = $request->no_hp;
             $kerjapraktek->instansi =  $request->instansi;
@@ -53,6 +57,7 @@ class KerjaPraktekController extends Controller
             $kerjapraktek->mulai_kerja_praktek = $request->mulai_kerja_praktek;
             $kerjapraktek->selesai_kerja_praktek = $request->selesai_kerja_praktek;
             $kerjapraktek->save();
+
             return redirect()->route('adminKerjaPraktek')->with(['success' => 'KerjaPraktek Berhasil Diubah!']);
         } catch (\Exception $e) {
             return back()->with(['errors' => $e->getMessage()]);
@@ -90,7 +95,11 @@ class KerjaPraktekController extends Controller
             $cari = $request->keyword;
             $kerjapraktek = KerjaPraktek::whereHas('user', function ($query) use ($cari) {
                 $query->where('nama_lengkap', 'like', '%' . $cari . '%');
-            })->orWhere(function ($query) use ($cari) {
+            })
+            ->orWhereHas('pembina', function ($query) use ($cari) {
+                $query->where('nama_pembina', 'like', '%' . $cari . '%');
+            })
+            ->orWhere(function ($query) use ($cari) {
                 $query->where('NIM', 'LIKE', '%' . $cari . '%')
                     ->orWhere('instansi', 'LIKE', '%' . $cari . '%')
                     ->orWhere('no_hp', 'LIKE', '%' . $cari . '%')

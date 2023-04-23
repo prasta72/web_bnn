@@ -16,6 +16,8 @@ class KerjaPraktek extends Model
         'no_hp',
         'instansi',
         'jurusan',
+        'status',
+        'bidang_kerja',
         'mulai_kerja_praktek',
         'selesai_kerja_praktek',
     ];

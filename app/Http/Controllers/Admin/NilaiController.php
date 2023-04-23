@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\KerjaPraktek;
 use App\Models\Nilai;
 use App\Models\Pembina;
 use App\Models\User;
@@ -12,18 +13,25 @@ class NilaiController extends Controller
 {
     public function index()
     {
-        $nilai = Nilai::with(['user','admin.pembina'])->paginate(10);
+        $nilai = Nilai::with(['user.kerjapraktek'])->paginate(10);
         return view('pages.admin.nilai.index', compact('nilai'));
     }
     public function create()
     {
-        $user = User::select('*')->whereNotIn('id',function($query) {
+        $user = User::select('*')->whereIn('id',function($query) {
+
+            $query->select('user_id')->from('kerja_prakteks');
+         
+         })->
+         whereNotIn('id',function($query) {
 
             $query->select('user_id')->from('nilais');
          
-         })->get();
+         })
+         ->get();
         $pembina = Pembina::all();
-        return view('pages.admin.nilai.create', compact('user','pembina'));
+        $kerjapraktek = KerjaPraktek::with(['pembina'])->get();
+        return view('pages.admin.nilai.create', compact('user','pembina','kerjapraktek'));
     }
     public function store(Request $request)
     {

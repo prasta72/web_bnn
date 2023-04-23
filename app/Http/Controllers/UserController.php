@@ -44,6 +44,8 @@ class UserController extends Controller
                 'no_hp' => $request->no_hp,
                 'instansi' =>  $request->instansi,
                 'jurusan' =>$request->jurusan,
+                'status' =>'aktif',
+                'bidang_kerja' =>'belum ditentukan',
                 'mulai_kerja_praktek' => $request->mulai_kerja_praktek,
                 'selesai_kerja_praktek' =>  $request->selesai_kerja_praktek,
             ]);

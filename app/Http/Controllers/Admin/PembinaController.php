@@ -11,13 +11,14 @@ class PembinaController extends Controller
 {
     public function index()
     {
-        $pembina = Pembina::orderBy('admin_id', 'asc')->paginate(10);
+        $pembina = Pembina::orderBy('created_at', 'desc')->paginate(10);
         return view('pages.admin.pembina.index', compact('pembina'));
     }
     public function create()
     {
         $admin = Admin::doesntHave('pembina')->get();
-        return view('pages.admin.pembina.create', compact('admin'));
+        $randadmin = Admin::inRandomOrder()->first();
+        return view('pages.admin.pembina.create', compact('admin','randadmin'));
     }
     public function store(Request $request)
     {
@@ -25,6 +26,7 @@ class PembinaController extends Controller
         try {
             $this->validate($request, [
                 'admin_id' => 'required', 'string', 'max:255',
+                'nama_pembina' => 'required', 'string', 'max:255',
                 'alamat' => 'required', 'string', 'max:255',
                 'no_hp' => 'required', 'string', 'max:255',
                 'bidang_kerja' => 'required', 'string', 'max:255',
@@ -32,6 +34,7 @@ class PembinaController extends Controller
             ]);
             Pembina::create([
                 'admin_id' => $request->admin_id,
+                'nama_pembina' => $request->nama_pembina,
                 'alamat' => $request->alamat,
                 'no_hp' => $request->no_hp,
                 'bidang_kerja' => $request->bidang_kerja,
@@ -54,6 +57,7 @@ class PembinaController extends Controller
         try {
             $this->validate($request, [
                 'admin_id' => 'required', 'string', 'max:255',
+                'nama_pembina' => 'required', 'string', 'max:255',
                 'alamat' => 'required', 'string', 'max:255',
                 'no_hp' => 'required', 'string', 'max:255',
                 'bidang_kerja' => 'required', 'string', 'max:255',
@@ -61,6 +65,7 @@ class PembinaController extends Controller
             ]);
             $pembina = Pembina::findOrFail($id);
             $pembina->admin_id = $request->admin_id;
+            $pembina->nama_pembina = $request->nama_pembina;
             $pembina->alamat = $request->alamat;
             $pembina->no_hp = $request->no_hp;
             $pembina->bidang_kerja =  $request->bidang_kerja;
@@ -106,6 +111,7 @@ class PembinaController extends Controller
             })->orWhere(function ($query) use ($cari) {
                 $query->where('alamat', 'LIKE', '%' . $cari . '%')
                     ->orWhere('bidang_kerja', 'LIKE', '%' . $cari . '%')
+                    ->orWhere('nama_pembina', 'LIKE', '%' . $cari . '%')
                     ->orWhere('no_hp', 'LIKE', '%' . $cari . '%');
             })
                 ->paginate(10);

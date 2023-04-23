@@ -87,7 +87,7 @@
                                     <input type="text" id="last_name" name="instansi"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Bidang Kerja" required
-                                        value="{{ old('pembina_id', $data->pembina->admin->nama) }}" readonly>
+                                        value="{{ old('pembina_id', $data->pembina->nama_pembina) }}" readonly>
                                 </div>
                                 <div class="w-full mx-4">
                                     <label for="last_name"
@@ -125,7 +125,7 @@
                                     <input type="text" id="last_name" name="mulai_kerja_praktek"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Bidang Kerja" required
-                                        value="{{ old('pembina_id', $data->pembina->bidang_kerja) }}" readonly>
+                                        value="{{ old('pembina_id', $data->bidang_kerja) }}" readonly>
                                 </div>
                                 <div class="w-full mx-4">
                                     <label for="last_name"
@@ -133,7 +133,7 @@
                                     <input type="text" id="last_name" name="selesai_kerja_praktek"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Bidang Kerja" required
-                                        value="{{ old('pembina_id', $data->pembina->status) }}" readonly>
+                                        value="{{ old('pembina_id', $data->status) }}" readonly>
                                 </div>
                             
                             </div>

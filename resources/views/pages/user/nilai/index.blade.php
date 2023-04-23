@@ -118,7 +118,7 @@
 
                 <!-- bottom -->
                 <div class="mt-8">
-                    <h1 class="h5 ">{{ $nilai->admin->nama }}</h1>
+                    <h1 class="h5 ">{{ $kerjapraktek->pembina->nama_pembina }}</h1>
                     <p>Nama Pembina</p>
                 </div>
                 <!-- end bottom -->

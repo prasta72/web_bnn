@@ -10,6 +10,7 @@ class Pembina extends Model
     use HasFactory;
     protected $fillable = [
         'admin_id',
+        'nama_pembina',
         'alamat',
         'no_hp',
         'bidang_kerja',

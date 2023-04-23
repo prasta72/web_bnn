@@ -83,7 +83,7 @@
 
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        {{ $value->admin->nama }}
+                                                        {{ $value->nama_pembina }}
                                                     </div>
                                                 </div>
                                             </div>
