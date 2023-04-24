@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\KerjaPraktek;
 use App\Models\Pembina;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -16,7 +17,7 @@ class NilaiFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory()->create()->id,
+            'user_id' => KerjaPraktek::factory()->create()->user_id,
             'admin_id' => Pembina::factory()->create()->admin_id,
             'nilai' => $this->faker->numberBetween(0, 100),
             'keterangan' => $this->faker->paragraph(2) ,

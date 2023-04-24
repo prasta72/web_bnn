@@ -24,6 +24,8 @@ class CreateKerjaPrakteksTable extends Migration
             $table->string('jurusan');
             $table->string('mulai_kerja_praktek');
             $table->string('selesai_kerja_praktek');
+            $table->string('status');
+            $table->string('bidang_kerja');
             $table->timestamps();
         });
     }

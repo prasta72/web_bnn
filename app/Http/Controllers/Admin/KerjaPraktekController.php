@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Absensi;
 use App\Models\KerjaPraktek;
 use App\Models\Pembina;
 use Illuminate\Http\Request;
@@ -69,6 +70,8 @@ class KerjaPraktekController extends Controller
     {
         $kerjapraktek =KerjaPraktek::findOrFail($id);
         $kerjapraktek->delete();
+        $absensi =Absensi::where('kerjapraktek_id', '=', $id);
+        $absensi->delete();
         if ($kerjapraktek) {
             return redirect()
                 ->route('adminKerjaPraktek')
