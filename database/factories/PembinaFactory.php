@@ -17,7 +17,6 @@ class PembinaFactory extends Factory
     {
         return [
             'admin_id' => Admin::factory()->create()->id,
-            'nama_pembina' => $this->faker->name(),
             'alamat' => $this->faker->address(),
             'no_hp' => $this->faker->phoneNumber() ,
             'bidang_kerja' =>  $this->faker->company(),
