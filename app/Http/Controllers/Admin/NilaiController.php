@@ -13,7 +13,7 @@ class NilaiController extends Controller
 {
     public function index()
     {
-        $nilai = Nilai::with(['user.kerjapraktek'])->paginate(10);
+        $nilai = Nilai::with(['user.kerjapraktek'])->orderBy('created_at','desc')->paginate(10);
         return view('pages.admin.nilai.index', compact('nilai'));
     }
     public function create()

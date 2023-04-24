@@ -16,6 +16,7 @@ class CreatePembinasTable extends Migration
         Schema::create('pembinas', function (Blueprint $table) {
             $table->id();
             $table->integer('admin_id');
+            $table->string('nama_pembina');
             $table->string('alamat');
             $table->string('no_hp');
             $table->string('bidang_kerja');

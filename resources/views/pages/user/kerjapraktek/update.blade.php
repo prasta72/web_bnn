@@ -77,7 +77,7 @@
                                                 <label for="last_name"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mulai
                                                     Kerja Praktek</label>
-                                                <input type="text" id="input_bidang_kerja" name="mulai_kerja_praktek"
+                                                <input type="date" id="input_bidang_kerja" name="mulai_kerja_praktek"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="Bidang Kerja" 
                                                     value="{{ old('mulai_kerja_praktek', $kerjapraktek->mulai_kerja_praktek) }}">
@@ -86,7 +86,7 @@
                                                 <label for="first_name"
                                                     class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Selesai
                                                     Kerja Praktek</label>
-                                                <input type="text" name="selesai_kerja_praktek" name="selesai_kerja_praktek"
+                                                <input type="date" name="selesai_kerja_praktek" name="selesai_kerja_praktek"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="selesai_kerja_praktek" required
                                                     value="{{ old('selesai_kerja_praktek', $kerjapraktek->selesai_kerja_praktek) }}">
@@ -107,8 +107,8 @@
                                                     Kerja</label>
                                                 <input type="text" 
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="selesai_kerja_praktek" required readonly
-                                                    value="{{ old('pembina_id', $kerjapraktek->pembina->bidang_kerja) }}">
+                                                    placeholder="Bidang Kerja" required readonly
+                                                    value="{{ old('pembina_id', $kerjapraktek->bidang_kerja) }}">
                                             </div>
                                         </div>
                                         <div class="flex flex-row md:flex-col my-2">
