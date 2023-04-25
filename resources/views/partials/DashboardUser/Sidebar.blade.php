@@ -49,7 +49,7 @@
       <a href="{{ route('userNilai') }}"
           class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
           <i class="fa-solid fa-pen"></i>
-          Nilai
+          Nilai 
       </a>
       <!-- end link -->
   </div>

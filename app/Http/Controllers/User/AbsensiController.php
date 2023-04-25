@@ -14,7 +14,7 @@ class AbsensiController extends Controller
     {
         $absensi = Absensi::with(['kerjapraktek.user','kerjapraktek.pembina'])->whereHas('kerjapraktek',function ($query) {
             $query->where('user_id', '=', auth()->user()->id);
-        })->orderBy('created_at', 'asc')->paginate(10);
+        })->orderBy('created_at', 'asc')->paginate(10); 
         return view('pages.user.absensi.index', compact('absensi'));
     }
     public function create()

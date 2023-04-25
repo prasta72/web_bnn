@@ -79,7 +79,7 @@
                                                     <img class="w-10 h-10 rounded-full"
                                                         src="https://source.unsplash.com/user/erondu"
                                                         alt="admin dashboard ui">
-                                                </div>
+                                                </div> 
 
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium leading-5 text-gray-900">

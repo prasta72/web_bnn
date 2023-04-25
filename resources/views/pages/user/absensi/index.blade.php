@@ -96,7 +96,7 @@
                                         <div class="text-sm leading-5 text-gray-500">
                                             {{ Carbon\Carbon::parse($value->waktu)->format('H:i:s')  }}
                                         </div>
-                                    </td>
+                                    </td> 
 
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                         <div class="text-sm leading-5 text-gray-500"> {{ $value->kehadiran }}

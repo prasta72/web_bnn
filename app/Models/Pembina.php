@@ -14,7 +14,7 @@ class Pembina extends Model
         'alamat',
         'no_hp',
         'bidang_kerja',
-        'status',
+        'status', 
     ];
     public function admin()
     {

@@ -28,7 +28,7 @@ class KerjaPraktekController extends Controller
         $pembina =Pembina::all();
         return view('pages.admin.kerjapraktek.update', compact('data','pembina'));
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) 
     {
         // dd($request);
         try {

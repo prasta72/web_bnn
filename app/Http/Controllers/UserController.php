@@ -35,7 +35,7 @@ class UserController extends Controller
                 'jurusan' => 'required', 'string', 'max:255',
                 'mulai_kerja_praktek' => 'required',
                 'selesai_kerja_praktek' => 'required',
-            ]);
+            ]); 
             KerjaPraktek::create([
                 'user_id' => auth()->user()->id,
                 'pembina_id' => Pembina::all()->random()->id,

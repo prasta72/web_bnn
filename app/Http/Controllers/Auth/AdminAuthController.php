@@ -27,7 +27,7 @@ class AdminAuthController extends Controller
                 return redirect()->route('adminDashboard');
             }
         } catch (\Exception $th) {
-            return  $th->getMessage();
+            return  $th->getMessage(); 
         }
 
 

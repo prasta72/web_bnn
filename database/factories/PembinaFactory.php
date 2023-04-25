@@ -19,7 +19,7 @@ class PembinaFactory extends Factory
             'admin_id' => Admin::factory()->create()->id,
             'nama_pembina' => $this->faker->name(),
             'alamat' => $this->faker->address(),
-            'no_hp' => $this->faker->phoneNumber() ,
+            'no_hp' => $this->faker->phoneNumber() , 
             'bidang_kerja' =>  $this->faker->company(),
             'status' => 'aktif',
         ];

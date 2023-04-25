@@ -19,7 +19,7 @@
                             </div>
                         @endif
                         <form action="{{ route('adminNilai.store') }}" method="post">
-                            @csrf
+                            @csrf 
                             <div class="flex flex-row md:flex-col my-2">
                                 <div class="w-full mx-4">
                                     <label for="first_name"

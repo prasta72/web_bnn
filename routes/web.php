@@ -109,7 +109,7 @@ Route::prefix('user')->group(function () {
         Route::post('/absensi/create', [UserAbsensiController::class, 'store'])->name('userAbsensi.store');
         Route::get('/absensi/search-date', [UserAbsensiController::class, 'searchDate'])->name('userAbsensi.searchDate');
 
-        // kegiatanKp
+        // kegiatanKp 
         Route::get('/kegiatan', [UserKegiatanKPController::class, 'index'])->name('userKegiatanKP');
         Route::patch('/kegiatan/update/{id}', [UserKegiatanKPController::class, 'update'])->name('userKegiatanKP.update');
         Route::get('/kegiatan/search-date', [UserKegiatanKPController::class, 'searchDate'])->name('userKegiatanKP.searchDate');

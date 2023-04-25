@@ -21,7 +21,7 @@ class CreateKerjaPrakteksTable extends Migration
             $table->string('alamat');
             $table->string('no_hp');
             $table->string('instansi');
-            $table->string('jurusan');
+            $table->string('jurusan'); 
             $table->string('mulai_kerja_praktek');
             $table->string('selesai_kerja_praktek');
             $table->string('status')->nullable();

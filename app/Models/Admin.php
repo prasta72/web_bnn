@@ -14,7 +14,7 @@ class Admin extends Authenticatable
     	return $this->hasOne('App\Models\Pembina');
     }
     public function nilai()
-    {
+    { 
     	return $this->hasOne('App\Models\Nilai');
     }
 }

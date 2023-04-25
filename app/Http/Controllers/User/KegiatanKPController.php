@@ -14,7 +14,7 @@ class KegiatanKPController extends Controller
         $kegiatan = kegiatan::with(['user'])->where('user_id', '=', auth()->user()->id)->paginate(10);
         // dd($kegiatan);
         return view('pages.user.kegiatankp.index', compact('kegiatan'));
-    }
+    } 
     public function update(Request $request, $id)
     {
         // dd($request);

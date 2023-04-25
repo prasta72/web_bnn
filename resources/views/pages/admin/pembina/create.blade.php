@@ -15,7 +15,7 @@
                                 <button class="alert-btn-close">
                                     <i class="fad fa-times"></i>
                                 </button>
-                                <span>{{ $message }}</span>
+                                <span>{{ $message }}</span> 
                             </div>
                         @endif
                         <form action="{{ route('adminPembina.store') }}" method="post">

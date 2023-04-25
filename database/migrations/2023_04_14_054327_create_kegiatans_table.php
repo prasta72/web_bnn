@@ -17,7 +17,7 @@ class CreateKegiatansTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('bidang_kerja');
-            $table->string('waktu');
+            $table->string('waktu'); 
             $table->string('kegiatan');
             $table->string('status');
             $table->timestamps();

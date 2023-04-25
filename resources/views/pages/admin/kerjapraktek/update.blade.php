@@ -80,7 +80,7 @@
                                                 {{ $item->nama_pembina }}
                                             </option>
                                         @endforeach
-                                    </select>
+                                    </select> 
                                 </div>
                                 <div class="w-full mx-4">
                                     <label for="last_name"

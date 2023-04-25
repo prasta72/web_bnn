@@ -119,7 +119,7 @@
                             
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
-                                <div class="w-full mx-4">
+                                <div class="w-full mx-4"> 
                                     <label for="last_name"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bidang Kerja</label>
                                     <input type="text" id="last_name" name="mulai_kerja_praktek"

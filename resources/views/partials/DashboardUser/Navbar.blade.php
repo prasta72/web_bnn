@@ -17,7 +17,7 @@
     <button id="navbarToggle" class="hidden md:block md:fixed right-0 mr-6">
         <i class="fad fa-chevron-double-down"></i>
     </button>
-    <!-- end navbar content toggle -->
+    <!-- end navbar content toggle --> 
 
     <!-- navbar content -->
     <div id="navbar"

@@ -16,7 +16,7 @@
                         <p class="text-white text-xs">Welcome Mahasiswa to Dashboard Kantor BNN Provinsi Bali</p>
                     </div>
                     <!-- end info -->
-
+ 
                 </div>
             </div>
             <!-- end update section -->

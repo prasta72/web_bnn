@@ -16,5 +16,5 @@ class AdminController extends Controller
         $countAdmin = count($dataAdmin);
         return view('pages.admin.adminDashboard', compact('dataUser', 'countUser', 'dataAdmin', 'countAdmin'));
     }
-   
+    
 }
