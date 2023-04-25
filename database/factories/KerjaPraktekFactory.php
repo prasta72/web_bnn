@@ -27,6 +27,7 @@ class KerjaPraktekFactory extends Factory
             'selesai_kerja_praktek' =>  $this->faker->dateTime(),
             'status' =>  'aktif',
             'bidang_kerja' =>  $this->faker->company(),
+            
         ];
     }
 }
