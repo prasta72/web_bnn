@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             AbsensiSeeder::class,
             AdminSeeder::class,
             KegiatanKPSeeder::class,
-            KerjaPraktekSeeder::class,
+            KerjaPraktekSeeder::class, 
             NilaiSeeder::class,
             PembinaSeeder::class,
             UserSeeder::class,

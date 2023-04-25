@@ -13,7 +13,7 @@ class PembinaSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Pembina::factory(5)->create();
+        \App\Models\Pembina::factory(5)->create(); 
 
     }
 }

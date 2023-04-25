@@ -19,7 +19,7 @@ class CreatePembinasTable extends Migration
             $table->string('nama_pembina');
             $table->string('alamat');
             $table->string('no_hp');
-            $table->string('bidang_kerja');
+            $table->string('bidang_kerja'); 
             $table->string('status');
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class KerjaPraktekController extends Controller
    }
    public function edit(KerjaPraktek $kerjapraktek, $id)
    {
-       // dd($request);
+       // dd($request); 
        $kerjapraktek = KerjaPraktek::findorFail($id);
        return view('pages.user.kerjapraktek.update', compact('kerjapraktek'));
    }

@@ -12,7 +12,7 @@ class KegiatanKPController extends Controller
 {
     public function index()
     {
-        $kegiatankp = kegiatan::with(['user'])->orderBy('created_at', 'desc')->paginate(10);
+        $kegiatankp = kegiatan::with(['user'])->orderBy('created_at', 'desc')->paginate(10); 
         return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
     }
     public function create()

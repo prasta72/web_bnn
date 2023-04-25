@@ -120,7 +120,7 @@
                 <div class="mt-8">
                     <h1 class="h5 ">{{ $kerjapraktek->pembina->nama_pembina }}</h1>
                     <p>Nama Pembina</p>
-                </div>
+                </div> 
                 <!-- end bottom -->
 
             </div>

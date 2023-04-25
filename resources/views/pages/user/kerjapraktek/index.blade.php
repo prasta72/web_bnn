@@ -105,7 +105,7 @@
                                                 placeholder="Bidang Kerja" readonly
                                                 value="{{ old('pembina_id', $value->pembina->nama_pembina) }}">
                                         </div>
-                                        <div class="w-full mx-4">
+                                        <div class="w-full mx-4"> 
                                             <label for="first_name"
                                                 class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Bidang
                                                 Kerja</label>

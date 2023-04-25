@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
-                                <div class="w-full mx-4">
+                                <div class="w-full mx-4"> 
                                     <label for="last_name"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                         Pembina</label>

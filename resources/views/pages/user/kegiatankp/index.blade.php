@@ -100,7 +100,7 @@
                                             <form action="{{ route('userKegiatanKP.update', $value->id) }}"
                                                 method="POST">
                                                 @csrf
-                                                @method('PATCH')
+                                                @method('PATCH') 
                                                 <select name="status" class="ms-4 form-control"
                                                     onchange="this.form.submit()">
                                                     <option>Belum Dicek</option>

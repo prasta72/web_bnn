@@ -58,7 +58,7 @@
 
                                 <i class="fad fa-user-times text-xs mr-1"></i>
                                 log out
-                            </button>
+                            </button> 
 
                         </a>
                     </form>

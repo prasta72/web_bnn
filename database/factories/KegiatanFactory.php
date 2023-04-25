@@ -17,7 +17,7 @@ class KegiatanFactory extends Factory
         return [
             'user_id' => User::factory()->create()->id,
             'bidang_kerja' =>  $this->faker->company(),
-            'waktu' => $this->faker->dateTime(),
+            'waktu' => $this->faker->dateTime(), 
             'kegiatan' =>  $this->faker->company(),
             'status' =>  'belum selesai',
         ];

@@ -86,7 +86,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
+                                                <div class="flex-shrink-0 w-10 h-10"> 
                                                     <img class="w-10 h-10 rounded-full"
                                                         src="https://source.unsplash.com/user/erondu"
                                                         alt="admin dashboard ui">

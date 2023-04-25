@@ -17,7 +17,7 @@ class CreateNilaisTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('admin_id');
-            $table->string('nilai');
+            $table->string('nilai'); 
             $table->string('keterangan');
             $table->timestamps();
         });

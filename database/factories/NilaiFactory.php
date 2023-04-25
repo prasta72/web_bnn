@@ -19,7 +19,7 @@ class NilaiFactory extends Factory
         return [
             'user_id' => KerjaPraktek::factory()->create()->user_id,
             'admin_id' => Pembina::factory()->create()->admin_id,
-            'nilai' => $this->faker->numberBetween(0, 100),
+            'nilai' => $this->faker->numberBetween(0, 100), 
             'keterangan' => $this->faker->paragraph(2) ,
         ];
     }

@@ -130,7 +130,7 @@
                         <!-- end update section -->
                     </div>
                     <!-- end Analytics -->
-                </div>
+                </div> 
                 <!-- end content -->
     </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"

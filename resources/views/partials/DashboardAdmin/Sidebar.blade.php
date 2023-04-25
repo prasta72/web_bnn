@@ -37,7 +37,7 @@
           <i class="fad fa-box-open text-xs mr-2"></i>
           Kerja Praktek
       </a>
-      <!-- end link -->
+      <!-- end link --> 
       <!-- link -->
       <a href="{{ route('adminAbsensi') }}"
           class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">

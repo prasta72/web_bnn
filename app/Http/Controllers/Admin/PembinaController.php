@@ -114,7 +114,7 @@ class PembinaController extends Controller
                     ->orWhere('nama_pembina', 'LIKE', '%' . $cari . '%')
                     ->orWhere('no_hp', 'LIKE', '%' . $cari . '%');
             })
-                ->paginate(10);
+                ->paginate(10); 
             // dd($pembina);
             return view('pages.admin.pembina.index', ['pembina' => $pembina]);
         } catch (\Exception $e) {

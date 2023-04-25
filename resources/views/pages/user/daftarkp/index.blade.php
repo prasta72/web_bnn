@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/dashboard.css') }}">
 </head>
 
-<body>
+<body> 
     <form action="{{ route('user.daftarKP') }}" method="post">
         <!-- strat content -->
         <div class="flex-1 p-6 md:mt-16">

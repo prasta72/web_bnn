@@ -22,3 +22,4 @@ class AdminFactory extends Factory
         ];
     }
 }
+ 

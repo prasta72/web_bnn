@@ -15,7 +15,7 @@ class Absensi extends Model
         'status',
     ];
     public function kerjapraktek()
-    {
+    { 
     	return $this->belongsTo('App\Models\KerjaPraktek');
     }
 }

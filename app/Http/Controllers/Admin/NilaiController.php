@@ -18,7 +18,7 @@ class NilaiController extends Controller
     }
     public function create()
     {
-        $user = User::select('*')->whereIn('id',function($query) {
+        $user = User::select('*')->whereIn('id',function($query) { 
 
             $query->select('user_id')->from('kerja_prakteks');
          

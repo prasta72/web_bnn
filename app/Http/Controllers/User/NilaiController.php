@@ -16,5 +16,5 @@ class NilaiController extends Controller
         $nilai = Nilai::with(['user', 'admin'])->where('user_id', '=', auth()->user()->id)->first();
         // dd($nilai);
         return view('pages.user.nilai.index', compact('nilai','kerjapraktek'));
-    }
+    } 
 }

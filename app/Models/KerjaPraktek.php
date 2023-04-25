@@ -25,7 +25,7 @@ class KerjaPraktek extends Model
     {
     	return $this->belongsTo('App\Models\User');
     }
-    public function pembina()
+    public function pembina() 
     {
     	return $this->belongsTo('App\Models\Pembina');
     }

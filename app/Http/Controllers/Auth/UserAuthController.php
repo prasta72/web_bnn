@@ -15,9 +15,9 @@ class UserAuthController extends Controller
     public function loginHandler(Request $request)
     {
         try {
-            $credentials = $request->validate(([
+            $credentials = $request->validate(([ 
                 'email' => 'required|email',
-                'password' => 'required'
+                'password' => 'required' 
             ]));
             if(Auth::guard('web')->attempt($credentials)){
                 $request->session()->regenerate();

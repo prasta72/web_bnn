@@ -82,7 +82,7 @@
                                                     placeholder="Bidang Kerja" 
                                                     value="{{ old('mulai_kerja_praktek', $kerjapraktek->mulai_kerja_praktek) }}">
                                             </div>
-                                            <div class="w-full mx-4">
+                                            <div class="w-full mx-4"> 
                                                 <label for="first_name"
                                                     class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Selesai
                                                     Kerja Praktek</label>
