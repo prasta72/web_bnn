@@ -79,6 +79,7 @@
             </div>
         </div>
     </section>
+    @guest
     <section class="p-4 md:p-20">
         <div class="flex flex-col md:flex-row mx-auto my-0 justify-center text-center">
             <button>
@@ -89,6 +90,8 @@
             </button>
         </div>
     </section>
+    @endguest
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
 </body>

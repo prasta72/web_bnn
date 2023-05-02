@@ -77,13 +77,15 @@
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
                                 <div class="w-full mx-4">
-                                    <label for="last_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bidang
-                                        Kerja</label>
-                                    <input type="text" id="input_bidang_kerja"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Bidang Kerja" readonly
-                                        value="{{ old('bidang_kerja', $data->bidang_kerja) }}">
+                                    <label for="first_name"
+                                        class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Nama Bidang Kerja</label>
+                                    <select name="admin_id" id="pembina"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        @foreach ($kerjapraktek as $item)
+                                            <option value="{{ $item->pembina->admin_id }}" ">
+                                                {{ $item->bidang_kerja }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="w-full mx-4">
                                     <label for="first_name"

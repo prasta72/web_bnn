@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\KerjaPraktek;
 use App\Models\Pembina;
-use App\Models\User;
+use App\Models\User;       
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -55,7 +55,7 @@ class UserController extends Controller
         }
     }
 
-
+ 
 
 
 
@@ -89,9 +89,11 @@ class UserController extends Controller
                 'pembina_id' => Pembina::all()->random()->id,
                 'NIM' => $request->NIM,
                 'alamat' =>$request->alamat,
+                'bidang_kerja' =>'belum ditentukan',
                 'no_hp' => $request->no_hp,
                 'instansi' =>  $request->instansi,
                 'jurusan' =>$request->jurusan,
+                'status' =>'aktif',
                 'mulai_kerja_praktek' => $request->mulai_kerja_praktek,
                 'selesai_kerja_praktek' =>  $request->selesai_kerja_praktek,
             ]);

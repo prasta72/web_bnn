@@ -59,7 +59,8 @@ class NilaiController extends Controller
         // dd($request);
         $data = Nilai::findorFail($id);
         $pembina =Pembina::with('admin')->get();
-        return view('pages.admin.nilai.update', compact('data','pembina'));
+        $kerjapraktek = KerjaPraktek::with(['pembina'])->get();
+        return view('pages.admin.nilai.update', compact('data','pembina','kerjapraktek'));
     }
     public function update(Request $request, $id)
     {
