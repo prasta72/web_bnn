@@ -48,7 +48,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/kerja-praktek/detail/{id}', [KerjaPraktekController::class, 'show'])->name('adminKerjaPraktek.show');
         Route::get('/kerja-praktek/update/{id}', [KerjaPraktekController::class, 'edit'])->name('adminKerjaPraktek.edit');
         Route::patch('/kerja-praktek/update/{id}', [KerjaPraktekController::class, 'update'])->name('adminKerjaPraktek.update');
-        Route::delete('/kerja-praktek/delete/{id}', [KerjaPraktekController::class, 'destroy'])->name('adminKerjaPraktek.destroy');
+        Route::delete('/kerja-praktek/delete/{id}/{user_id}', [KerjaPraktekController::class, 'destroy'])->name('adminKerjaPraktek.destroy');
 
         Route::get('/kerja-praktek/cari', [KerjaPraktekController::class, 'cari'])->name('adminKerjaPraktekCari');
 

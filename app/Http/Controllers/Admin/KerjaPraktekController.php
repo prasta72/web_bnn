@@ -67,13 +67,13 @@ class KerjaPraktekController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id, $user_id)
     {
         $kerjapraktek =KerjaPraktek::findOrFail($id);
         $kerjapraktek->delete();
         $absensi =Absensi::where('kerjapraktek_id', '=', $id);
         $absensi->delete();
-        $nilai =Nilai::where('user_id', '=', $id);
+        $nilai =Nilai::where('user_id', '=', $user_id);
         $nilai->delete();
         if ($kerjapraktek) {
             return redirect()

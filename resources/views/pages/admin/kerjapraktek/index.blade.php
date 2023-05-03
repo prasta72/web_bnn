@@ -107,7 +107,7 @@
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="text-sm leading-5 text-gray-500"> {{ $value->mulai_kerja_praktek }}
                                             </div>
-                                        </td> 
+                                        </td>   
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="text-sm leading-5 text-gray-500">
                                                 {{ $value->selesai_kerja_praktek }}
@@ -129,7 +129,7 @@
 
                                         <td
                                             class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                            <a href="{{ route('adminKerjaPraktek.show', $value->id) }}">
+                                            <a href="{{ route('adminKerjaPraktek.show',$value->id) }}">
                                                 <svg class="w-6 h-6 text-blue-400" fill="#FFC83D" version="1.1"
                                                     viewBox="0 0 442.04 442.04" xml:space="preserve"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -155,7 +155,7 @@
                                         <td
                                             class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('adminKerjaPraktek.destroy', $value->id) }}" method="POST">
+                                                action="{{ route('adminKerjaPraktek.destroy', ["user_id" => $value->user_id, "id"=>$value->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit">
