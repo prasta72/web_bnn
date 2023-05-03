@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\KerjaPraktek;
+use App\Models\Nilai;
 use App\Models\Pembina;
 use Illuminate\Http\Request;
 
@@ -72,6 +73,8 @@ class KerjaPraktekController extends Controller
         $kerjapraktek->delete();
         $absensi =Absensi::where('kerjapraktek_id', '=', $id);
         $absensi->delete();
+        $nilai =Nilai::where('user_id', '=', $id);
+        $nilai->delete();
         if ($kerjapraktek) {
             return redirect()
                 ->route('adminKerjaPraktek')
