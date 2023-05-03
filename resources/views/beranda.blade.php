@@ -18,7 +18,7 @@
                 <span
                     class=" md:block hidden self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Kantor
                     BNN Provinsi
-                    Bali</span> 
+                    Bali</span>
             </a>
             <button data-collapse-toggle="navbar-default" type="button"
                 class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -32,35 +32,31 @@
                 </svg>
             </button>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                {{-- {{ dd(Auth::guard('web')->user()) }} --}}
                 <ul
                     class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    @auth('admins')
+                    @if (Auth::guard('admins')->user() != null)
                         <li>
                             <a href="{{ route('adminDashboard') }}">
                                 <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dashboard</button>
                             </a>
                         </li>
-                    @endauth
-
-                    @auth('web')
+                    @elseif(Auth::guard('web')->user() != null)
                         <li>
                             <a href="{{ route('userDashboard') }}">
                                 <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dashboard</button>
                             </a>
                         </li>
-                    @endauth
-                    @guest
-
+                    @elseif(Auth::guard('web')->user() == null || Auth::guard('admins')->user() == null)
                         <li>
                             <a href="{{ route('login') }}">
                                 <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
                             </a>
                         </li>
-
-                    @endguest
+                    @endif
 
                 </ul>
             </div>
@@ -79,19 +75,21 @@
             </div>
         </div>
     </section>
-    @guest
-    <section class="p-4 md:p-20">
-        <div class="flex flex-col md:flex-row mx-auto my-0 justify-center text-center">
-            <button>
-                <a href="{{ route('daftarUser') }}">
-                    <button type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pendaftaran</button>
-                </a>
-            </button>
-        </div>
-    </section>
-    @endguest
-   
+    @if (Auth::guard('admins')->user() != null)
+    @elseif(Auth::guard('web')->user() != null)
+    @elseif(Auth::guard('web')->user() == null || Auth::guard('admins')->user() == null)
+        <section class="p-4 md:p-20">
+            <div class="flex flex-col md:flex-row mx-auto my-0 justify-center text-center">
+                <button>
+                    <a href="{{ route('daftarUser') }}">
+                        <button type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pendaftaran</button>
+                    </a>
+                </button>
+            </div>
+        </section>
+    @endif
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
 </body>
