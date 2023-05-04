@@ -14,7 +14,7 @@ class KerjaPraktekController extends Controller
     public function index()
     {
         $kerjapraktek = KerjaPraktek::with(['pembina.admin', 'user'])->orderBy('created_at', 'asc')->paginate(10);
-
+        $kerjapraktek = optional($kerjapraktek);
         return view('pages.admin.kerjapraktek.index', compact('kerjapraktek'));
     }
 
