@@ -89,14 +89,14 @@
 
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        {{ isset($value->user['nama_lengkap']) ?? $value->user['nama_lengkap'] }}
+                                                        {{ isset($value->user['nama_lengkap']) ? $value->user['nama_lengkap'] : null }}
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ isset($value->pembina['nama_pembina']) ?? $value->pembina['nama_pembina'] }}
+                                            <div class="text-sm leading-5 text-gray-500"> {{ isset($value->pembina['nama_pembina']) ? $value->pembina['nama_pembina'] : null }}
                                             </div>
                                         </td>
 
