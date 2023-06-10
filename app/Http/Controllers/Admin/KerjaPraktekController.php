@@ -13,25 +13,29 @@ class KerjaPraktekController extends Controller
 {
     public function index()
     {
-        $kerjapraktek =KerjaPraktek::with('pembina.admin')->orderBy('created_at', 'asc')->paginate(10);
-        // dd($kerjapraktek);
-        return view('pages.admin.kerjapraktek.index', compact('kerjapraktek'));
+        $kerjapraktek = KerjaPraktek::with(['pembina.admin', 'user'])->orderBy('created_at', 'asc')->paginate(10);
+
+        return view('pages.admin.kerjapraktek.index', [
+            'kerjapraktek' => $kerjapraktek
+        ]);
     }
+
     public function show($id)
     {
-        $data =KerjaPraktek::with(['user','pembina'])->findorFail($id);
+        $data = KerjaPraktek::with(['user', 'pembina'])->findorFail($id);
         return view('pages.admin.kerjapraktek.show', compact('data'));
     }
+
     public function edit($id)
     {
         // dd($request);
-        $data =KerjaPraktek::with(['user','pembina'])->findorFail($id);
-        $pembina =Pembina::all();
-        return view('pages.admin.kerjapraktek.update', compact('data','pembina'));
+        $data = KerjaPraktek::with(['user', 'pembina'])->findorFail($id);
+        $pembina = Pembina::all();
+        return view('pages.admin.kerjapraktek.update', compact('data', 'pembina'));
     }
-    public function update(Request $request, $id) 
+
+    public function update(Request $request, $id)
     {
-        // dd($request);
         try {
             $this->validate($request, [
                 'user_id' => 'required', 'string', 'max:255',
@@ -46,7 +50,8 @@ class KerjaPraktekController extends Controller
                 'mulai_kerja_praktek' => 'required',
                 'selesai_kerja_praktek' => 'required',
             ]);
-            $kerjapraktek =KerjaPraktek::findOrFail($id);
+
+            $kerjapraktek = KerjaPraktek::findOrFail($id);
             $kerjapraktek->user_id = $request->user_id;
             $kerjapraktek->pembina_id = $request->pembina_id;
             $kerjapraktek->NIM = $request->NIM;
@@ -54,7 +59,7 @@ class KerjaPraktekController extends Controller
             $kerjapraktek->status = $request->status;
             $kerjapraktek->alamat = $request->alamat;
             $kerjapraktek->no_hp = $request->no_hp;
-            $kerjapraktek->instansi =  $request->instansi;
+            $kerjapraktek->instansi = $request->instansi;
             $kerjapraktek->jurusan = $request->jurusan;
             $kerjapraktek->mulai_kerja_praktek = $request->mulai_kerja_praktek;
             $kerjapraktek->selesai_kerja_praktek = $request->selesai_kerja_praktek;
@@ -69,11 +74,11 @@ class KerjaPraktekController extends Controller
 
     public function destroy($id, $user_id)
     {
-        $kerjapraktek =KerjaPraktek::findOrFail($id);
+        $kerjapraktek = KerjaPraktek::findOrFail($id);
         $kerjapraktek->delete();
-        $absensi =Absensi::where('kerjapraktek_id', '=', $id);
+        $absensi = Absensi::where('kerjapraktek_id', '=', $id);
         $absensi->delete();
-        $nilai =Nilai::where('user_id', '=', $user_id);
+        $nilai = Nilai::where('user_id', '=', $user_id);
         $nilai->delete();
         if ($kerjapraktek) {
             return redirect()
@@ -91,10 +96,6 @@ class KerjaPraktekController extends Controller
     }
 
 
-
-
-
-
     public function cari(Request $request)
     {
         try {
@@ -102,16 +103,16 @@ class KerjaPraktekController extends Controller
             $kerjapraktek = KerjaPraktek::whereHas('user', function ($query) use ($cari) {
                 $query->where('nama_lengkap', 'like', '%' . $cari . '%');
             })
-            ->orWhereHas('pembina', function ($query) use ($cari) {
-                $query->where('nama_pembina', 'like', '%' . $cari . '%');
-            })
-            ->orWhere(function ($query) use ($cari) {
-                $query->where('NIM', 'LIKE', '%' . $cari . '%')
-                    ->orWhere('instansi', 'LIKE', '%' . $cari . '%')
-                    ->orWhere('no_hp', 'LIKE', '%' . $cari . '%')
-                    ->orWhere('jurusan', 'LIKE', '%' . $cari . '%')
-                    ->orWhere('alamat', 'LIKE', '%' . $cari . '%');
-            })
+                ->orWhereHas('pembina', function ($query) use ($cari) {
+                    $query->where('nama_pembina', 'like', '%' . $cari . '%');
+                })
+                ->orWhere(function ($query) use ($cari) {
+                    $query->where('NIM', 'LIKE', '%' . $cari . '%')
+                        ->orWhere('instansi', 'LIKE', '%' . $cari . '%')
+                        ->orWhere('no_hp', 'LIKE', '%' . $cari . '%')
+                        ->orWhere('jurusan', 'LIKE', '%' . $cari . '%')
+                        ->orWhere('alamat', 'LIKE', '%' . $cari . '%');
+                })
                 ->paginate(10);
             // dd($kerjapraktek);
             return view('pages.admin.kerjapraktek.index', ['kerjapraktek' => $kerjapraktek]);
