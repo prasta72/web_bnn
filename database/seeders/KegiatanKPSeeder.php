@@ -13,6 +13,6 @@ class KegiatanKPSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Kegiatan::factory(10)->create(); 
+        \App\Models\Kegiatan::factory(5)->create(); 
     }
 }

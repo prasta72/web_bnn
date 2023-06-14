@@ -13,6 +13,6 @@ class NilaiSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Nilai::factory(11)->create(); 
+        \App\Models\Nilai::factory(5)->create(); 
     }
 }

@@ -40,13 +40,21 @@ class NilaiController extends Controller
             $this->validate($request, [
                 'user_id' => 'required', 'string', 'max:255',
                 'admin_id' => 'required', 'string', 'max:255',
-                'nilai' => 'required', 'string', 'max:255',
+                'nilai_sopan_santun' => 'required', 'string', 'max:255',
+                'nilai_dedikasi' => 'required', 'string', 'max:255',
+                'nilai_presensi_kehadiran' => 'required', 'string', 'max:255',
+                'nilai_tanggung_jawab' => 'required', 'string', 'max:255',
+                'nilai_kemampuan_bekerjasama' => 'required', 'string', 'max:255',
+                'nilai_prakarsa' => 'required', 'string', 'max:255',
+                'nilai_skill' => 'required', 'string', 'max:255',
                 'keterangan' => 'required',
             ]);
+            $hasil_akhir = ($request->nilai_sopan_santun + $request->nilai_dedikasi + $request->nilai_presensi_kehadiran + $request->nilai_tanggung_jawab + $request->nilai_kemampuan_bekerjasama + $request->nilai_prakarsa + $request->nilai_skill) / 7;
+
             Nilai::create([
                 'user_id' => $request->user_id,
                 'admin_id' => $request->admin_id,
-                'nilai' => $request->nilai,
+                'nilai' => $hasil_akhir,
                 'keterangan' => $request->keterangan,
             ]);
             return redirect()->route('adminNilai')->with(['success' => 'Nilai Berhasil Dibuat!']);

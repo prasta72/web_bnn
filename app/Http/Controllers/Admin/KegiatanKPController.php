@@ -104,7 +104,7 @@ class KegiatanKPController extends Controller
                ]);
                $date = Carbon::parse($request->date);
 
-               $kegiatankp = kegiatan::whereDate('waktu','=',$date->format('y-m-d'))->orderBy('created_at', 'asc')->paginate(10);
+               $kegiatankp = kegiatan::whereMonth('waktu','=',$date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
                return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
         } catch (\Exception $e) {
             return $e->getMessage();

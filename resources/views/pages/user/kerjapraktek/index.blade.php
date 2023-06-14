@@ -103,9 +103,12 @@
                                             <input type="text" id="input_bidang_kerja"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Bidang Kerja" readonly
-                                                value="{{ old('pembina_id', $value->pembina->nama_pembina) }}">
+                                                @if ($value->pembina_id == null) 
+                                                value="Pembina Belum Ditentukan"
+                                                @else
+                                                value="{{ old('pembina_id', $value->pembina->nama_pembina) }}" @endif>
                                         </div>
-                                        <div class="w-full mx-4"> 
+                                        <div class="w-full mx-4">
                                             <label for="first_name"
                                                 class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Bidang
                                                 Kerja</label>

@@ -81,10 +81,18 @@
                         <!-- end top -->
 
                         <!-- bottom -->
+                        @if ($data->pembina_id == null)
                         <div class="mt-8">
-                            <h1 class="h5 ">{{ $data->pembina->admin->nama }}</h1>
+                            <h1 class="h5 ">Pembina Belum Ditentukan</h1>
                             <p>Nama Pembina</p>
                         </div>
+                        @else
+                        <div class="mt-8">
+                            <h1 class="h5 ">{{ $data->pembina->nama_pembina }}</h1>
+                            <p>Nama Pembina</p>
+                        </div>
+                        @endif
+                        
                         <!-- end bottom -->
 
                     </div>
