@@ -30,10 +30,21 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 </div>
+                                <div class="flex md:flex-col gap-2">
+                                    <input type="month" name="date" value="{{ request()->date }}""
+                                        class="block p-2 pl-10 text-sm md:w-full text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                <input type="date" name="date" value="{{ request()->date }}""
-                                    class="block p-2 pl-10 text-sm md:w-full text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <select name="nama_mahasiswa"
+                                        class="block p-2 pl-10 text-sm md:w-full text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
+                                        @foreach ($nama_mahasiswa as $key => $value)
+                                            <option value="{{ $value->kerjapraktek->id }}" {{ app('request')->input('nama_mahasiswa') == $value->kerjapraktek->id ? 'selected': ''}}>
+                                                {{ $value->kerjapraktek->user->nama_lengkap }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
 
                             </div>
                             <button type="submit"
@@ -86,7 +97,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10"> 
+                                                <div class="flex-shrink-0 w-10 h-10">
                                                     <img class="w-10 h-10 rounded-full"
                                                         src="https://source.unsplash.com/user/erondu"
                                                         alt="admin dashboard ui">

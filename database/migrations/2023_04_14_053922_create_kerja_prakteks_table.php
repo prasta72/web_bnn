@@ -16,7 +16,7 @@ class CreateKerjaPrakteksTable extends Migration
         Schema::create('kerja_prakteks', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('pembina_id');
+            $table->integer('pembina_id')->nullable();
             $table->string('NIM');
             $table->string('alamat');
             $table->string('no_hp');

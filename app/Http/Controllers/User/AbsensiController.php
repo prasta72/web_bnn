@@ -28,12 +28,11 @@ class AbsensiController extends Controller
         try {
             $this->validate($request, [
                 'kerja_praktek_id' => 'required', 'string', 'max:255',
-                'waktu' => 'required', 'string', 'max:255',
                 'kehadiran' => 'required', 'string', 'max:255',
             ]);
             Absensi::create([
                 'kerjapraktek_id' => $request->kerja_praktek_id,
-                'waktu' => $request->waktu,
+                'waktu' => Carbon::now(),
                 'kehadiran' => $request->kehadiran,
                 'status' => '-',
             ]);

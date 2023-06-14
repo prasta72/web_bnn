@@ -62,7 +62,7 @@
                         <!-- bottom -->
                         <div class="mt-8">
                             <h1 class="h5 ">{{ $countAdmin }}</h1>
-                            <p>Admin</p>
+                            <p>Pembina</p>
                         </div>
                         <!-- end bottom -->
 

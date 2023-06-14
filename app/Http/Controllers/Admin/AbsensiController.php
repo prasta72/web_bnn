@@ -11,9 +11,9 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $absensi = Absensi::with(['kerjapraktek.user','kerjapraktek.pembina'])->orderBy('created_at', 'asc')->paginate(10); 
-        // dd($absensi);
-        return view('pages.admin.absensi.index', compact('absensi'));
+        $absensi = Absensi::with(['kerjapraktek.user', 'kerjapraktek.pembina'])->orderBy('created_at', 'asc')->paginate(10);
+        $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->get();
+        return view('pages.admin.absensi.index', compact('absensi', 'nama_mahasiswa'));
     }
     public function update(Request $request, $id)
     {
@@ -24,7 +24,7 @@ class AbsensiController extends Controller
                 $datas->status = $request->approve;
                 $datas->save();
             }
-            
+
             if ($data) {
                 if ($request->approve == "approved") {
                     //redirect dengan pesan sukses
@@ -48,26 +48,31 @@ class AbsensiController extends Controller
                 $datas->status = 'approved';
                 $datas->save();
             }
-            
+
             if ($data) {
-                    //redirect dengan pesan sukses
-                    return redirect()->route('adminAbsensi')->with(['success' => 'Semua Kehadiran Berhasil Diapprove!']);
-                
+                //redirect dengan pesan sukses
+                return redirect()->route('adminAbsensi')->with(['success' => 'Semua Kehadiran Berhasil Diapprove!']);
             }
         } catch (\Exception $e) {
             return back()->with(['errors' => $e->getMessage()]);
         }
     }
 
-    public function searchDate(Request $request){
-        
-        $this->validate($request,[
-            'date' => 'required|date',
-           ]);
-           $date = Carbon::parse($request->date);
-         
-           $absensi = Absensi::whereDate('waktu','=',$date->format('y-m-d'))->orderBy('created_at', 'asc')->paginate(10);
-           return view('pages.admin.absensi.index', compact('absensi'));
-         
+    public function searchDate(Request $request)
+    {
+        $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->get();
+
+        $kp_id = $request->nama_mahasiswa;
+
+        if ($request->date == null) {
+            $absensi = Absensi::where('kerjapraktek_id', '=', $kp_id)->orderBy('created_at', 'asc')->paginate(10);
+        } elseif ($request->nama_mahasiswa == null) {
+            $date = Carbon::parse($request->date);
+            $absensi = Absensi::WhereMonth('waktu', '=', $date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
+        } else {
+            $date = Carbon::parse($request->date);
+            $absensi = Absensi::where('kerjapraktek_id', '=', $kp_id)->WhereMonth('waktu', '=', $date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
+        }
+        return view('pages.admin.absensi.index', compact('absensi', 'nama_mahasiswa'));
     }
 }

@@ -96,8 +96,15 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ isset($value->pembina['nama_pembina']) ? $value->pembina['nama_pembina'] : null }}
+                                            @if (isset($value->pembina['nama_pembina']))
+                                            <div class="text-sm leading-5 text-gray-500">
+                                                {{ $value->pembina['nama_pembina'] }}
                                             </div>
+                                            @else
+                                            <div class="text-sm leading-5 text-red-500">
+                                                {{  "Pembina Belum Ditentukan" }}
+                                            </div>
+                                            @endif
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
