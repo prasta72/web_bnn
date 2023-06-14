@@ -38,7 +38,7 @@ class UserController extends Controller
             ]); 
             KerjaPraktek::create([
                 'user_id' => auth()->user()->id,
-                'pembina_id' => Pembina::all()->random()->id,
+                'pembina_id' => null,
                 'NIM' => $request->NIM,
                 'alamat' =>$request->alamat,
                 'no_hp' => $request->no_hp,

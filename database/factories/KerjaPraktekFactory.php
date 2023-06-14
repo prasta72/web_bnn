@@ -17,7 +17,7 @@ class KerjaPraktekFactory extends Factory
     {
         return [
             'user_id' => User::factory()->create()->id,
-            'pembina_id' => Pembina::factory()->create()->id,
+            'pembina_id' => null,
             'NIM' => $this->faker->randomNumber(8, true),
             'alamat' => $this->faker->address(),
             'no_hp' => $this->faker->phoneNumber() ,
