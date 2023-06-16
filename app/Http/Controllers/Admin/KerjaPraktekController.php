@@ -22,15 +22,15 @@ class KerjaPraktekController extends Controller
 
     public function show($id)
     {
+        
         $data = KerjaPraktek::with(['user', 'pembina'])->findorFail($id);
         return view('pages.admin.kerjapraktek.show', compact('data'));
     }
 
     public function edit($id)
     {
-        // dd($request);
         $data = KerjaPraktek::with(['user', 'pembina'])->findorFail($id);
-        $pembina = Pembina::all();
+        $pembina = Pembina::where('status' ,'=','aktif')->get();
         return view('pages.admin.kerjapraktek.update', compact('data', 'pembina'));
     }
 
@@ -72,14 +72,16 @@ class KerjaPraktekController extends Controller
     }
 
 
-    public function destroy($id, $user_id)
+    public function destroy($id, $kerja_praktek_id)
     {
-        $kerjapraktek = KerjaPraktek::findOrFail($id);
-        $kerjapraktek->delete();
+        // dd($id);
         $absensi = Absensi::where('kerjapraktek_id', '=', $id);
         $absensi->delete();
-        $nilai = Nilai::where('user_id', '=', $user_id);
+        $nilai = Nilai::where('kerja_praktek_id', '=', $kerja_praktek_id);
         $nilai->delete();
+        $kerjapraktek = KerjaPraktek::findOrFail($id);
+        $kerjapraktek->delete();
+        
         if ($kerjapraktek) {
             return redirect()
                 ->route('adminKerjaPraktek')

@@ -162,7 +162,7 @@
                                         <td
                                             class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('adminKerjaPraktek.destroy', ["user_id" => $value->user_id, "id"=>$value->id]) }}" method="POST">
+                                                action="{{ route('adminKerjaPraktek.destroy', ["kerja_praktek_id" => $value->id, "id"=>$value->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit">

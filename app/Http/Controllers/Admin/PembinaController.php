@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\KerjaPraktek;
 use App\Models\Pembina;
 use Illuminate\Http\Request;
 
@@ -82,6 +83,8 @@ class PembinaController extends Controller
     {
         $pembina = Pembina::findOrFail($id);
         $pembina->delete();
+        $kerjapraktek = KerjaPraktek::where('pembina_id', '=', $id);
+        $kerjapraktek->delete();
         if ($pembina) {
             return redirect()
                 ->route('adminPembina')

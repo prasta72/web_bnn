@@ -18,17 +18,19 @@
                                 <span>{{ $message }}</span>
                             </div>
                         @endif
-                        <form action="{{ route('adminKerjaPraktek.update', $data->id) }}" >
+                        <form action="{{ route('adminKerjaPraktek.update', $data->id) }}">
                             @csrf
                             <div class="flex flex-row md:flex-col my-2">
                                 <div class="w-full mx-4">
                                     <label for="first_name"
-                                        class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Nama Mahasiswa</label>
+                                        class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Nama
+                                        Mahasiswa</label>
                                     <select name="user_id" id="pembina"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         readonly>
 
-                                        <option value="{{ old('user_id', $data->user_id) }}">{{ old('user_id', $data->user->nama_lengkap) }}
+                                        <option value="{{ old('user_id', $data->user_id) }}">
+                                            {{ old('user_id', $data->user->nama_lengkap) }}
                                         </option>
                                     </select>
                                 </div>
@@ -40,7 +42,7 @@
                                         placeholder="2986 Kaden Tunnel Suite 373 Kuphalville, KS 28321" required
                                         value="{{ old('NIM', $data->NIM) }}" readonly>
                                 </div>
-                                
+
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
                                 <div class="w-full mx-4">
@@ -57,7 +59,8 @@
                                         Hp</label>
                                     <input type="text" id="last_name" name="no_hp"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="+1-253-728-1349" required value="{{ old('no_hp',$data->no_hp) }}" readonly>
+                                        placeholder="+1-253-728-1349" required value="{{ old('no_hp', $data->no_hp) }}"
+                                        readonly>
                                 </div>
 
                             </div>
@@ -75,8 +78,8 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instansi</label>
                                     <input type="text" id="last_name" name="instansi"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Bidang Kerja" required
-                                        value="{{ old('instansi', $data->instansi) }}" readonly>
+                                        placeholder="Bidang Kerja" required value="{{ old('instansi', $data->instansi) }}"
+                                        readonly>
                                 </div>
 
                             </div>
@@ -86,23 +89,31 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pembina</label>
                                     <input type="text" id="last_name" name="instansi"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Bidang Kerja" required
-                                        value="{{ old('pembina_id', $data->pembina->nama_pembina) }}" readonly>
+                                        placeholder="Bidang Kerja" required 
+                                        @if ($data->pembina_id == null)
+                                        
+                                        value="Pembina Belum Ditentukan" readonly
+                                         
+                                        @else 
+                                        value="{{ old('pembina_id', $data->pembina->nama_pembina) }}" readonly
+                                        @endif
+                                        >
                                 </div>
                                 <div class="w-full mx-4">
                                     <label for="last_name"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">jurusan</label>
                                     <input type="text" id="last_name" name="jurusan"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Bidang Kerja" required
-                                        value="{{ old('jurusan', $data->jurusan) }}" readonly>
+                                        placeholder="Bidang Kerja" required value="{{ old('jurusan', $data->jurusan) }}"
+                                        readonly>
                                 </div>
-                            
+
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
                                 <div class="w-full mx-4">
                                     <label for="last_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mulai Kerja Praktek</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mulai Kerja
+                                        Praktek</label>
                                     <input type="text" id="last_name" name="mulai_kerja_praktek"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Bidang Kerja" required
@@ -110,18 +121,20 @@
                                 </div>
                                 <div class="w-full mx-4">
                                     <label for="last_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selesai Kerja Praktek</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selesai Kerja
+                                        Praktek</label>
                                     <input type="text" id="last_name" name="selesai_kerja_praktek"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Bidang Kerja" required
                                         value="{{ old('selesai_kerja_praktek', $data->selesai_kerja_praktek) }}" readonly>
                                 </div>
-                            
+
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
-                                <div class="w-full mx-4"> 
+                                <div class="w-full mx-4">
                                     <label for="last_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bidang Kerja</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bidang
+                                        Kerja</label>
                                     <input type="text" id="last_name" name="mulai_kerja_praktek"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Bidang Kerja" required
@@ -135,7 +148,7 @@
                                         placeholder="Bidang Kerja" required
                                         value="{{ old('pembina_id', $data->status) }}" readonly>
                                 </div>
-                            
+
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
                                 <div class="grow w-full mx-4">
@@ -155,5 +168,4 @@
             <!-- end content -->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            
         @endsection

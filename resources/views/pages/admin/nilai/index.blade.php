@@ -74,20 +74,20 @@
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
                                                     <img class="w-10 h-10 rounded-full"
-                                                        src="https://source.unsplash.com/user/erondu"
+                                                        src="https://source.unsplash.com/user/ero3ndu"
                                                         alt="admin dashboard ui">
                                                 </div>
 
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        {{ $value->user->nama_lengkap }}
+                                                        {{ $value->kerjapraktek->user->nama_lengkap }}
                                                     </div>
                                                 </div> 
                                             </div>
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->user->kerjapraktek->bidang_kerja }}
+                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->kerjapraktek->bidang_kerja }}
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">

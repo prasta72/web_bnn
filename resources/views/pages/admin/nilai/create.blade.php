@@ -24,21 +24,21 @@
                                 <div class="w-full mx-4">
                                     <label for="first_name"
                                         class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Nama Mahasiswa</label>
-                                    <select name="user_id" id="pembina"
+                                    <select name="kerja_praktek_id" id="pembina"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @foreach ($user as $item)
                                             <option value="{{ $item->id }}" data-user="{{ $item->nama_lengkap }}">
-                                                {{ $item->nama_lengkap }}</option>
+                                                {{ $item->user->nama_lengkap }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="w-full mx-4">
                                     <label for="first_name"
                                         class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Nama Bidang Kerja</label>
-                                    <select name="admin_id" id="pembina"
+                                    <select name="bidang_kerja" id="pembina"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @foreach ($kerjapraktek as $item)
-                                            <option value="{{ $item->pembina->admin_id }}" ">
+                                            <option value="{{ $item->bidang_kerja }}" ">
                                                 {{ $item->bidang_kerja }}</option>
                                         @endforeach
                                     </select>

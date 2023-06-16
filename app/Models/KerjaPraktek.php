@@ -33,4 +33,8 @@ class KerjaPraktek extends Model
     {
     	return $this->hasOne('App\Models\Absensi');
     }
+    public function nilai()
+    {
+    	return $this->hasOne('App\Models\Nilai');
+    }
 }

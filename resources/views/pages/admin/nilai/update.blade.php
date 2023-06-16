@@ -26,13 +26,13 @@
                                     <label for="first_name"
                                         class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">ID
                                         Mahasiswa</label>
-                                    <select name="user_id" id="pembina"
+                                    <select name="kerja_praktek_id" id="pembina"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         readonly>
 
-                                        <option value="{{ old('user_id', $data->user_id) }}""
-                                            data-mahasiswa="{{ $data->user->nama_lengkap }}">
-                                            {{ old('user_id', $data->user_id) }}
+                                        <option value="{{ old('kerja_praktek_id', $data->kerja_praktek_id) }}""
+                                            data-mahasiswa="{{ $data->kerjapraktek->nama_lengkap }}">
+                                            {{ old('kerja_praktek_id', $data->kerjapraktek->user_id) }}
                                         </option>
                                     </select>
                                 </div>
@@ -43,7 +43,7 @@
                                     <input type="text" id="input_mahasiswa"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="2986 Kaden Tunnel Suite 373 Kuphalville, KS 28321" readonly
-                                        value="{{ old('user_id', $data->user->nama_lengkap) }}">
+                                        value="{{ old('user_id', $data->kerjapraktek->user->nama_lengkap) }}">
                                 </div>
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
@@ -54,15 +54,15 @@
                                     <select name="admin_id" id="pembina_admin"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                        <option value="{{ old('admin_id', $data->admin_id) }}">
-                                            {{ old('admin_id', $data->admin_id) }}
+                                        <option value="{{ old('kerja_praktek_id', $data->kerjapraktek->pembina_id) }}">
+                                            {{ old('kerja_praktek_id',$data->kerjapraktek->pembina_id) }}
                                         </option>
-                                        @foreach ($pembina as $item)
+                                        {{-- @foreach ($pembina as $item)
                                             <option value="{{ $item->admin_id }}"
                                                 data-bidang-kerja="{{ $item->bidang_kerja }}"
                                                 data-pembina="{{ $item->admin->nama }}">
                                                 {{ $item->admin_id }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                                 <div class="w-full mx-4">
@@ -71,7 +71,15 @@
                                         Pembina</label>
                                     <input type="text" id="input_pembina"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Doe" readonly value="{{ old('admin_id', $data->admin->nama) }}">
+                                      readonly
+                                        @if ($data->kerjapraktek->pembina == null)
+                                        value="Pembina Belum Ditentukan"
+                                        @else
+                                        value="{{ 
+                                        
+                                            old('admin_id', $data->kerjapraktek->pembina->nama_pembina) }}"
+                                        @endif
+                                       >
                                 </div>
 
                             </div>
@@ -79,22 +87,75 @@
                                 <div class="w-full mx-4">
                                     <label for="first_name"
                                         class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Nama Bidang Kerja</label>
-                                    <select name="admin_id" id="pembina"
+                                    <select name="bidang_kerja" id="pembina"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @foreach ($kerjapraktek as $item)
-                                            <option value="{{ $item->pembina->admin_id }}">
+                                            <option value="{{ $item->bidang_kerja}}">
                                                 {{ $item->bidang_kerja }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="flex flex-row md:flex-col my-2">
                                 <div class="w-full mx-4">
-                                    <label for="first_name"
-                                        class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Nilai</label>
-                                    <input type="number" name="nilai"
+                                    <label for="last_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Sopan Santun dan Etika</label>
+                                    <input type="number" name="nilai_sopan_santun"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Nilai" required
-                                        value="{{ old('nilai', $data->nilai) }}">
+                                        placeholder="Doe" required>
                                 </div>
+                                <div class="w-full mx-4">
+                                    <label for="last_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Dedikasi Terhadap Tugas</label>
+                                    <input type="number" name="nilai_dedikasi"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Doe" required>
+                                </div>
+
+                            </div>
+                            <div class="flex flex-row md:flex-col my-2">
+                                <div class="w-full mx-4">
+                                    <label for="last_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Presensi Kehadiran</label>
+                                    <input type="number" name="nilai_presensi_kehadiran"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Doe" required>
+                                </div>
+                                <div class="w-full mx-4">
+                                    <label for="last_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Tanggung Jawab</label>
+                                    <input type="number" name="nilai_tanggung_jawab"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Doe" required>
+                                </div>
+
+                            </div>
+                            <div class="flex flex-row md:flex-col my-2">
+                                <div class="w-full mx-4">
+                                    <label for="last_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Kemampuan Bekerjasama</label>
+                                    <input type="number" name="nilai_kemampuan_bekerjasama"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Doe" required>
+                                </div>
+                                <div class="w-full mx-4">
+                                    <label for="last_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Prakarsa/Inisiatif</label>
+                                    <input type="number" name="nilai_prakarsa"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Doe" required>
+                                </div>
+
+                            </div>
+                            <div class="flex flex-row md:flex-col my-2">
+                                <div class="w-full mx-4">
+                                    <label for="last_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Skill / Kompetensi Teknis</label>
+                                    <input type="number" name="nilai_skill"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Doe" required>
+                                </div>
+
                             </div>
                             <div class="flex flex-row md:flex-col my-2">
                                 <div class="w-full mx-4">
@@ -111,7 +172,7 @@
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:my-2 p-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                                 </div>
                                 <div class="grow w-full mx-4">
-                                    <a href="{{ route('adminPembina') }}">
+                                    <a href="{{ route('adminNilai') }}">
                                         <button type="button"
                                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:my-2 p-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Back</button>
                                     </a>

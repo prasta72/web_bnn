@@ -17,8 +17,9 @@ class NilaiFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => KerjaPraktek::factory()->create()->user_id,
+            // 'user_id' => KerjaPraktek::factory()->create()->user_id,
             'admin_id' => Pembina::factory()->create()->admin_id,
+            'kerja_praktek_id' => KerjaPraktek::factory()->create()->id,
             'nilai' => $this->faker->numberBetween(0, 100), 
             'keterangan' => $this->faker->paragraph(2) ,
         ];
