@@ -9,17 +9,18 @@ class Nilai extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        'kerja_praktek_id',
         'admin_id',
         'nilai',
         'keterangan',
     ];
-    public function user() 
-    {
-    	return $this->belongsTo('App\Models\User');
-    }
+    
     public function admin()
     {
     	return $this->belongsTo('App\Models\Admin');
+    }
+    public function kerjaPraktek()
+    {
+    	return $this->belongsTo('App\Models\KerjaPraktek');
     }
 }

@@ -13,7 +13,9 @@ class NilaiController extends Controller
     {
 
         $kerjapraktek = KerjaPraktek::with('pembina')->where('user_id', '=', auth()->user()->id)->first();
-        $nilai = Nilai::with(['user', 'admin'])->where('user_id', '=', auth()->user()->id)->first();
+        $nilai = Nilai::with(['admin','kerjapraktek'=> function ($query) {
+            $query->where('user_id', '=', auth()->user()->id);
+        }])->where('kerja_praktek_id','=',$kerjapraktek->id)->first();
         // dd($nilai);
         return view('pages.user.nilai.index', compact('nilai','kerjapraktek'));
     } 

@@ -39,7 +39,7 @@
                         <!-- bottom -->
                         <div class="mt-8">
                             <h1 class="h5 ">{{ $countUser }}</h1>
-                            <p>User</p>
+                            <p>Mahasiswa</p>
                         </div>
                         <!-- end bottom -->
 

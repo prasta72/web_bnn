@@ -7,6 +7,7 @@ use App\Models\Absensi;
 use App\Models\KerjaPraktek;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AbsensiController extends Controller
 {
@@ -50,7 +51,9 @@ class AbsensiController extends Controller
            ]);
            $date = Carbon::parse($request->date);
 
-           $absensi = Absensi::whereDate('waktu','=',$date->format('y-m-d'))->orderBy('created_at', 'asc')->paginate(10);
+           $absensi = Absensi::whereMonth('waktu','=',$date->format('m'))->with(['kerjapraktek.user' => function($query){
+            $query->where('id', '=', auth()->user()->id);
+           }])->orderBy('created_at', 'asc')->paginate(10);
            return view('pages.user.absensi.index', compact('absensi'));
 
     }

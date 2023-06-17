@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KegiatanKPController extends Controller
 {
@@ -44,13 +45,9 @@ class KegiatanKPController extends Controller
 
 
     public function searchDate(Request $request){
-
-        $this->validate($request,[
-            'date' => 'required|date',
-           ]);
            $date = Carbon::parse($request->date);
 
-           $kegiatan = kegiatan::whereDate('waktu','=',$date->format('y-m-d'))->orderBy('created_at', 'asc')->paginate(10);
+           $kegiatan = kegiatan::whereMonth('waktu','=',$date->format('m'))->Where('user_id','=', Auth::user()->id)->orderBy('created_at', 'asc')->paginate(10);
            return view('pages.user.kegiatankp.index', compact('kegiatan'));
 
     }

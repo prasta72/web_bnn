@@ -12,14 +12,14 @@ class KegiatanKPController extends Controller
 {
     public function index()
     {
-        $kegiatankp = kegiatan::with(['user'])->orderBy('created_at', 'desc')->paginate(10); 
+        $kegiatankp = kegiatan::with(['user'])->orderBy('created_at', 'desc')->paginate(10);
         return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
     }
     public function create()
     {
         $kegiatan = kegiatan::get();
         $user = User::get();
-        return view('pages.admin.kegiatankp.create', compact('kegiatan','user'));
+        return view('pages.admin.kegiatankp.create', compact('kegiatan', 'user'));
     }
     public function store(Request $request)
     {
@@ -99,13 +99,20 @@ class KegiatanKPController extends Controller
     public function cari(Request $request)
     {
         try {
-            $this->validate($request,[
-                'date' => 'required|date',
-               ]);
-               $date = Carbon::parse($request->date);
+            $kegiatankp = Kegiatan::with(['user'])->get();
 
-               $kegiatankp = kegiatan::whereMonth('waktu','=',$date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
-               return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
+            $kp_id = $request->nama_mahasiswa;
+
+            if ($request->date == null) {
+                $kegiatankp = Kegiatan::where('user_id', '=', $kp_id)->orderBy('created_at', 'asc')->paginate(10);
+            } elseif ($request->nama_mahasiswa == null) {
+                $date = Carbon::parse($request->date);
+                $kegiatankp = kegiatan::whereMonth('waktu', '=', $date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
+            } else {
+                $date = Carbon::parse($request->date);
+                $kegiatankp = Kegiatan::where('user_id', '=', $kp_id)->WhereMonth('waktu', '=', $date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
+            }
+            return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
