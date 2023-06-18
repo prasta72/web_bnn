@@ -48,7 +48,14 @@ class NilaiController extends Controller
             Nilai::create([
                 'admin_id' => $rand_admin,
                 'kerja_praktek_id' => $request->kerja_praktek_id,
-                'nilai' => $hasil_akhir,
+                'nilai_sopan_santun' => $request->nilai_sopan_santun,
+                'nilai_dedikasi' => $request->nilai_dedikasi,
+                'nilai_presensi_kehadiran' => $request->nilai_presensi_kehadiran,
+                'nilai_tanggung_jawab' => $request->nilai_tanggung_jawab,
+                'nilai_kemampuan_bekerjasama' => $request->nilai_kemampuan_bekerjasama,
+                'nilai_prakarsa' => $request->nilai_prakarsa,
+                'nilai_skill' => $request->nilai_skill,
+                'nilai' => number_format($hasil_akhir,2),
                 'keterangan' => $request->keterangan,
             ]);
             return redirect()->route('adminNilai')->with(['success' => 'Nilai Berhasil Dibuat!']);
@@ -84,7 +91,14 @@ class NilaiController extends Controller
             $rand_admin = Admin::inRandomOrder()->take(1)->first()->id;
             $nilai->kerja_praktek_id = $request->kerja_praktek_id;
             $nilai->admin_id = $rand_admin;
-            $nilai->nilai = $hasil_akhir;
+            $nilai->nilai_sopan_santun = $request->nilai_sopan_santun;
+            $nilai->nilai_dedikasi = $request->nilai_dedikasi;
+            $nilai->nilai_presensi_kehadiran = $request->nilai_presensi_kehadiran;
+            $nilai->nilai_tanggung_jawab = $request->nilai_tanggung_jawab;
+            $nilai->nilai_kemampuan_bekerjasama = $request->nilai_kemampuan_bekerjasama;
+            $nilai->nilai_prakarsa = $request->nilai_prakarsa;
+            $nilai->nilai_skill = $request->nilai_skill;
+            $nilai->nilai = number_format($hasil_akhir,2) ;
             $nilai->keterangan = $request->keterangan;
             $nilai->save();
             return redirect()->route('adminNilai')->with(['success' => 'Nilai Berhasil Diubah!']);

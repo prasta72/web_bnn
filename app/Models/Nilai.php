@@ -11,6 +11,13 @@ class Nilai extends Model
     protected $fillable = [
         'kerja_praktek_id',
         'admin_id',
+        'nilai_sopan_santun',
+        'nilai_dedikasi',
+        'nilai_presensi_kehadiran',
+        'nilai_tanggung_jawab',
+        'nilai_kemampuan_bekerjasama',
+        'nilai_prakarsa',
+        'nilai_skill',
         'nilai',
         'keterangan',
     ];

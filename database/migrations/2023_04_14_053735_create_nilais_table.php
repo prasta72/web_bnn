@@ -18,6 +18,13 @@ class CreateNilaisTable extends Migration
             // $table->integer('user_id');
             $table->integer('admin_id');
             $table->integer('kerja_praktek_id');
+            $table->string('nilai_sopan_santun'); 
+            $table->string('nilai_dedikasi'); 
+            $table->string('nilai_presensi_kehadiran'); 
+            $table->string('nilai_tanggung_jawab'); 
+            $table->string('nilai_kemampuan_bekerjasama'); 
+            $table->string('nilai_prakarsa'); 
+            $table->string('nilai_skill'); 
             $table->string('nilai'); 
             $table->string('keterangan');
             $table->timestamps();
