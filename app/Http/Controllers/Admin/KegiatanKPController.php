@@ -99,7 +99,7 @@ class KegiatanKPController extends Controller
     public function cari(Request $request)
     {
         try {
-            $kegiatankp = Kegiatan::with(['user'])->get();
+            $kegiatankp = Kegiatan::with(['user'])->select('user_id')->distinct()->get();
 
             $kp_id = $request->nama_mahasiswa;
 

@@ -91,7 +91,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody class="bg-white">
+                            <tbody class="bg-white" >
                                 @foreach ($absensi as $key => $value)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -159,7 +159,19 @@
         <!-- end content -->
         <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
             <div class="min-w-full">
-                {{ $absensi->links() }}
+                {{ $absensi->withQueryString()->links() }}
             </div>
         </div>
+        <script>
+            function loadNextPage(url) {
+              $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) {
+                  $('#content-container').html(data);
+                }
+              });
+            }
+            </script>
+            
     @endsection

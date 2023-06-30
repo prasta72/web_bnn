@@ -12,7 +12,7 @@ class AbsensiController extends Controller
     public function index()
     {
         $absensi = Absensi::with(['kerjapraktek.user', 'kerjapraktek.pembina'])->orderBy('created_at', 'asc')->paginate(10);
-        $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->get();
+        $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->select('kerjapraktek_id')->distinct()->get();
         return view('pages.admin.absensi.index', compact('absensi', 'nama_mahasiswa'));
     }
     public function update(Request $request, $id)
@@ -60,7 +60,7 @@ class AbsensiController extends Controller
 
     public function searchDate(Request $request)
     {
-        $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->get();
+        $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->select('kerjapraktek_id')->distinct()->get();
 
         $kp_id = $request->nama_mahasiswa;
 

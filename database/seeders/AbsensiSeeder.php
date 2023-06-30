@@ -13,6 +13,6 @@ class AbsensiSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Absensi::factory(5)->create(); 
+        \App\Models\Absensi::factory(25)->create(); 
     }
 }
