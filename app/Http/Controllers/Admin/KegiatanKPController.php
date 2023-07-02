@@ -105,7 +105,13 @@ class KegiatanKPController extends Controller
             $kp_id = $request->nama_mahasiswa;
 
             $date = Carbon::parse($request->date);
-            $kegiatankp = Kegiatan::where('user_id', 'like', '%'.$kp_id.'%')->WhereMonth('waktu', '=', $date->format('m'))->orderBy('id', 'ASC')->paginate(10);
+            $kegiatankp = Kegiatan::query();
+
+            if($request->date != null) {
+                $kegiatankp->whereMonth('waktu', '=', $date->format('m'));
+            }
+
+            $kegiatankp = $kegiatankp->where('user_id', 'like', '%'.$kp_id.'%')->orderBy('id', 'ASC')->paginate(10);
 
             return view('pages.admin.kegiatankp.index', compact('kegiatankp', 'users'));
         } catch (\Exception $e) {
