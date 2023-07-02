@@ -12,7 +12,7 @@ class KegiatanKPController extends Controller
 {
     public function index()
     {
-        $kegiatankp = kegiatan::with(['user'])->orderBy('created_at', 'desc')->paginate(10);
+        $kegiatankp = kegiatan::with(['user'])->orderBy('id', 'ASC')->paginate(10);
         $users = User::all();
 
         return view('pages.admin.kegiatankp.index', compact('kegiatankp', 'users'));
@@ -105,7 +105,7 @@ class KegiatanKPController extends Controller
             $kp_id = $request->nama_mahasiswa;
 
             $date = Carbon::parse($request->date);
-            $kegiatankp = Kegiatan::where('user_id', 'like', '%'.$kp_id.'%')->WhereMonth('waktu', '=', $date->format('m'))->orderBy('id', 'DESC')->paginate(10);
+            $kegiatankp = Kegiatan::where('user_id', 'like', '%'.$kp_id.'%')->WhereMonth('waktu', '=', $date->format('m'))->orderBy('id', 'ASC')->paginate(10);
 
             return view('pages.admin.kegiatankp.index', compact('kegiatankp', 'users'));
         } catch (\Exception $e) {

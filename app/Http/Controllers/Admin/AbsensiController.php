@@ -11,7 +11,7 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $absensi = Absensi::with(['kerjapraktek.user', 'kerjapraktek.pembina'])->orderBy('id', 'DESC')->paginate(10);
+        $absensi = Absensi::with(['kerjapraktek.user', 'kerjapraktek.pembina'])->orderBy('id', 'ASC')->paginate(10);
         $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->select('kerjapraktek_id')->distinct()->get();
 
         return view('pages.admin.absensi.index', compact('absensi', 'nama_mahasiswa'));
@@ -69,7 +69,7 @@ class AbsensiController extends Controller
 
 
         $date = Carbon::parse($request->date);
-        $absensi = Absensi::whereMonth('waktu', '=', $date->format('m'))->where('kerjapraktek_id', 'like', '%' . $kp_id . '%')->orderBy('id', 'DESC')->paginate(10);
+        $absensi = Absensi::whereMonth('waktu', '=', $date->format('m'))->where('kerjapraktek_id', 'like', '%' . $kp_id . '%')->orderBy('id', 'ASC')->paginate(10);
 
         return view('pages.admin.absensi.index', compact('absensi', 'nama_mahasiswa'));
     }
