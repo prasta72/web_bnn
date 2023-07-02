@@ -15,8 +15,10 @@ class NilaiController extends Controller
     public function index()
     {
         $nilai = Nilai::with(['kerjapraktek.user'])->orderBy('created_at', 'desc')->paginate(10);
+
         return view('pages.admin.nilai.index', compact('nilai'));
     }
+
     public function create()
     {
         $user = KerjaPraktek::select('*')->whereNotIn('id', function ($query) {
@@ -24,11 +26,13 @@ class NilaiController extends Controller
             $query->select('kerja_praktek_id')->from('nilais');
         })
             ->get();
-        // $user = KerjaPraktek::with(['user'])->get();
+
         $pembina = Pembina::all();
-        $kerjapraktek = KerjaPraktek::with(['pembina'])->get();
+        $kerjapraktek = KerjaPraktek::with(['pembina'])->get()->unique('bidang_kerja');
+
         return view('pages.admin.nilai.create', compact('user', 'pembina', 'kerjapraktek'));
     }
+
     public function store(Request $request)
     {
         try {
@@ -43,8 +47,10 @@ class NilaiController extends Controller
                 'nilai_skill' => 'required', 'string', 'max:255',
                 'keterangan' => 'required',
             ]);
+
             $hasil_akhir = ($request->nilai_sopan_santun + $request->nilai_dedikasi + $request->nilai_presensi_kehadiran + $request->nilai_tanggung_jawab + $request->nilai_kemampuan_bekerjasama + $request->nilai_prakarsa + $request->nilai_skill) / 7;
             $rand_admin = Admin::inRandomOrder()->take(1)->first()->id;
+
             Nilai::create([
                 'admin_id' => $rand_admin,
                 'kerja_praktek_id' => $request->kerja_praktek_id,
@@ -58,22 +64,24 @@ class NilaiController extends Controller
                 'nilai' => number_format($hasil_akhir,2),
                 'keterangan' => $request->keterangan,
             ]);
+
             return redirect()->route('adminNilai')->with(['success' => 'Nilai Berhasil Dibuat!']);
         } catch (\Exception $e) {
             return back()->with(['errors' => $e->getMessage()]);
         }
     }
+
     public function edit(Nilai $nilai, $id)
     {
-        // dd($request);
         $data = Nilai::with(['kerjapraktek.user','kerjapraktek.pembina'])->findorFail($id);
         $pembina = Pembina::with('admin')->get();
-        $kerjapraktek = KerjaPraktek::with(['pembina'])->get();
+        $kerjapraktek = KerjaPraktek::with(['pembina'])->get()->unique('bidang_kerja');
+
         return view('pages.admin.nilai.update', compact('data', 'pembina', 'kerjapraktek'));
     }
+
     public function update(Request $request, $id)
     {
-        // dd($request);
         try {
             $this->validate($request, [
                 'kerja_praktek_id' => 'required', 'string', 'max:255',
@@ -107,7 +115,6 @@ class NilaiController extends Controller
         }
     }
 
-
     public function destroy($id)
     {
         $nilai = Nilai::findOrFail($id);
@@ -127,11 +134,6 @@ class NilaiController extends Controller
         }
     }
 
-
-
-
-
-
     public function cari(Request $request)
     {
         try {
@@ -148,7 +150,7 @@ class NilaiController extends Controller
                         ->orWhere('keterangan', 'LIKE', '%' . $cari . '%');
                 })
                 ->paginate(10);
-            // dd($nilai);
+
             return view('pages.admin.nilai.index', ['nilai' => $nilai]);
         } catch (\Exception $e) {
             return $e->getMessage();
