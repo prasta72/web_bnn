@@ -100,7 +100,7 @@
                                             <form action="{{ route('userKegiatanKP.update', $value->id) }}"
                                                 method="POST">
                                                 @csrf
-                                                @method('PATCH') 
+                                                @method('PATCH')
                                                 <select name="status" class="ms-4 form-control"
                                                     onchange="this.form.submit()">
                                                     <option>Belum Dicek</option>
@@ -112,7 +112,7 @@
                                             </form>
                                         </div>
                                     </td>
-                                  
+
 
 
                                 </tr>
@@ -131,7 +131,7 @@
         <!-- end content -->
         <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
             <div class="min-w-full">
-                {{ $kegiatan->links() }}
+                {{ $kegiatan->withQueryString()->links() }}
             </div>
         </div>
     @endsection

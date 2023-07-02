@@ -15,6 +15,7 @@ class AbsensiController extends Controller
         $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->select('kerjapraktek_id')->distinct()->get();
         return view('pages.admin.absensi.index', compact('absensi', 'nama_mahasiswa'));
     }
+
     public function update(Request $request, $id)
     {
         try {

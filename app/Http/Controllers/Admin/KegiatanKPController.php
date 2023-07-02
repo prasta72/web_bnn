@@ -13,14 +13,18 @@ class KegiatanKPController extends Controller
     public function index()
     {
         $kegiatankp = kegiatan::with(['user'])->orderBy('created_at', 'desc')->paginate(10);
-        return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
+        $users = User::all();
+
+        return view('pages.admin.kegiatankp.index', compact('kegiatankp', 'users'));
     }
+
     public function create()
     {
         $kegiatan = kegiatan::get();
         $user = User::get();
         return view('pages.admin.kegiatankp.create', compact('kegiatan', 'user'));
     }
+
     public function store(Request $request)
     {
         // dd($request);
@@ -91,15 +95,11 @@ class KegiatanKPController extends Controller
         }
     }
 
-
-
-
-
-
     public function cari(Request $request)
     {
         try {
             $kegiatankp = Kegiatan::with(['user'])->select('user_id')->distinct()->get();
+            $users = User::all();
 
             $kp_id = $request->nama_mahasiswa;
 
@@ -112,7 +112,7 @@ class KegiatanKPController extends Controller
                 $date = Carbon::parse($request->date);
                 $kegiatankp = Kegiatan::where('user_id', '=', $kp_id)->WhereMonth('waktu', '=', $date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
             }
-            return view('pages.admin.kegiatankp.index', compact('kegiatankp'));
+            return view('pages.admin.kegiatankp.index', compact('kegiatankp', 'users'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
