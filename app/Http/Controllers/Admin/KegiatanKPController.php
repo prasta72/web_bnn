@@ -47,12 +47,14 @@ class KegiatanKPController extends Controller
             return back()->with(['errors' => $e->getMessage()]);
         }
     }
+
     public function edit(kegiatan $kegiatan, $id)
     {
         // dd($request);
         $data = kegiatan::findorFail($id);
         return view('pages.admin.kegiatankp.update', compact('data'));
     }
+
     public function update(Request $request, $id)
     {
         // dd($request);
@@ -67,7 +69,7 @@ class KegiatanKPController extends Controller
             $kegiatan->user_id = $request->user_id;
             $kegiatan->bidang_kerja = $request->bidang_kerja;
             $kegiatan->waktu = $request->waktu;
-            $kegiatan->kegiatan =  $request->kegiatan;
+            $kegiatan->kegiatan = $request->kegiatan;
             $kegiatan->save();
             return redirect()->route('adminKegiatanKP')->with(['success' => 'Kegiatan Kerja Praktek Berhasil Diubah!']);
         } catch (\Exception $e) {
@@ -98,20 +100,13 @@ class KegiatanKPController extends Controller
     public function cari(Request $request)
     {
         try {
-            $kegiatankp = Kegiatan::with(['user'])->select('user_id')->distinct()->get();
             $users = User::all();
 
             $kp_id = $request->nama_mahasiswa;
 
-            if ($request->date == null) {
-                $kegiatankp = Kegiatan::where('user_id', '=', $kp_id)->orderBy('created_at', 'asc')->paginate(10);
-            } elseif ($request->nama_mahasiswa == null) {
-                $date = Carbon::parse($request->date);
-                $kegiatankp = kegiatan::whereMonth('waktu', '=', $date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
-            } else {
-                $date = Carbon::parse($request->date);
-                $kegiatankp = Kegiatan::where('user_id', '=', $kp_id)->WhereMonth('waktu', '=', $date->format('m'))->orderBy('created_at', 'asc')->paginate(10);
-            }
+            $date = Carbon::parse($request->date);
+            $kegiatankp = Kegiatan::where('user_id', 'like', '%'.$kp_id.'%')->WhereMonth('waktu', '=', $date->format('m'))->orderBy('id', 'DESC')->paginate(10);
+
             return view('pages.admin.kegiatankp.index', compact('kegiatankp', 'users'));
         } catch (\Exception $e) {
             return $e->getMessage();

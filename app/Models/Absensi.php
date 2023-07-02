@@ -14,8 +14,11 @@ class Absensi extends Model
         'kehadiran',
         'status',
     ];
+
+    protected $dates = ['waktu'];
+
     public function kerjapraktek()
-    { 
+    {
     	return $this->belongsTo('App\Models\KerjaPraktek');
     }
 }
