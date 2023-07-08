@@ -16,7 +16,7 @@
             <!-- update section -->
             <div class="flex flex-col mt-8">
                 <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                    <div class="pb-4 flex flex-row md:flex-col justify-between">
+                    {{-- <div class="pb-4 flex flex-row md:flex-col justify-between">
                         <form action="{{ route('adminAbsensi.searchDate') }}" class="px-8 flex sm:flex-col flex-row"
                             method="get">
 
@@ -44,7 +44,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm sm:my-2 px-5 py-2 mr-2  md:p-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mx-8 my-auto">Cari
@@ -65,87 +64,28 @@
                                 Approve semua kehadiran
                             </button>
                         </form>
-                    </div>
-
+                    </div> --}}
                     <div
                         class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                        <table class="min-w-full md:overflow-x-scroll overflow-visible">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Nama Mahasiswa</th>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Bidang Kerja</th>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Waktu</th>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Kehadiran</th>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Approve</th>
-
-                                </tr>
-                            </thead>
-
-                            <tbody class="bg-white" >
-                                @foreach ($absensi as $key => $value)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-10 h-10 rounded-full"
-                                                        src="https://source.unsplash.com/user/erondu"
-                                                        alt="admin dashboard ui">
-                                                </div>
-
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        {{ $value->kerjapraktek->user->nama_lengkap }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500">
-                                                {{ $value->kerjapraktek->bidang_kerja }}
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->waktu }}
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500"> {{ $value->kehadiran }}
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500">
-                                                <form action="{{ route('adminAbsensi.update', $value->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <select name="approve" class="ms-4 form-control"
-                                                        onchange="this.form.submit()">
-                                                        <option>Belum Dicek</option>
-                                                        <option @if (old('status', $value->status) == 'approved') selected @endif
-                                                            value="approved">Approve</option>
-                                                        <option @if (old('status', $value->status) == 'notapproved') selected @endif
-                                                            value="notapproved">Tidak Approve</option>
-                                                    </select>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-
+                        <div>
+                            <h1 class="flex text-3xl font-semibold">Daftar Absensi</h1>
+                        </div>
+                        <div class="flex gap-2 flex-wrap p-4" style="">
+                           @foreach ($absensi as $absen) 
+                           <a style="width: 20rem; height: 7rem" class="rounded shadow p-4 hover:bg-blue-500 hover:text-white " href="{{route('adminAbsensi.Detail', ['id' => $absen->kerjapraktek_id])}}">
+                                <div class=" ">
+                                    <div class="text-sm font-semibold text-center">{{\App\Models\User::where('id', $absen->kerjapraktek_id)->first()->nama_lengkap}}</div>
+                                    <div class="text-sm text-center">Total Kehadiran</div>
+                                    <div class="text-sm text-center">{{$absen->total_absensi}}</div>
+                                </div>
+                            </a>
+                           @endforeach
+                            <a style="width: 20rem; height: 7rem" class=" sm:w-full rounded shadow p-4 hover:bg-blue-500 hover:text-white flex justify-center items-center" href="{{route('adminAbsensi.all')}}">
+                                <div class="font-semibold">
+                                    Semua Mahasiswa
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <!-- end update section -->

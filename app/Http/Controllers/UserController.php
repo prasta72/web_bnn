@@ -57,12 +57,6 @@ class UserController extends Controller
 
  
 
-
-
-
-
-
-
     public function daftarUser(){
         return view('pages.user.daftarkp.daftaruser');
     }
@@ -84,8 +78,13 @@ class UserController extends Controller
                 'mulai_kerja_praktek' => 'required',
                 'selesai_kerja_praktek' => 'required',
             ]);
+            $user = User::create([
+                'nama_lengkap' => $request->nama_lengkap,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
             KerjaPraktek::create([
-                'user_id' => $user_id->id + 1,
+                'user_id' => $user->id,
                 'pembina_id' => null,
                 'NIM' => $request->NIM,
                 'alamat' =>$request->alamat,
@@ -97,12 +96,8 @@ class UserController extends Controller
                 'mulai_kerja_praktek' => $request->mulai_kerja_praktek,
                 'selesai_kerja_praktek' =>  $request->selesai_kerja_praktek,
             ]);
-            User::create([
-                'nama_lengkap' => $request->nama_lengkap,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-            Auth::loginUsingId($user_id->id + 1);
+           
+            Auth::loginUsingId($user->id);
             return redirect()->route('userDashboard')->with(['success' => 'Pembina Berhasil Dibuat!']);
         } catch (\Exception $e) {
             return back()->with(['errors' => $e->getMessage()]);

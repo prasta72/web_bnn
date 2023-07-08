@@ -17,7 +17,7 @@
             <div class="flex flex-col mt-8">
                 <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div class="pb-4 flex flex-row md:flex-col justify-between">
-                        <form action="{{ route('adminAbsensi.searchDate') }}" class="px-8 flex sm:flex-col flex-row"
+                        <form action="{{ route('adminAbsensi.searchDate.detail') }}" class="px-8 flex sm:flex-col flex-row"
                             method="get">
 
                             <label for="table-search" class="sr-only">Search</label>
@@ -34,7 +34,7 @@
                                     <input type="month" name="date" value="{{ request()->date }}"
                                         class="block p-2 pl-10 text-sm md:w-full text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                    <select name="nama_mahasiswa"
+                                    {{-- <select name="nama_mahasiswa"
                                         class="block p-2 pl-10 text-sm md:w-full text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="">Pilih Nama Mahasiswa</option>
                                         @foreach ($nama_mahasiswa as $key => $value)
@@ -42,7 +42,8 @@
                                                 {{ $value->kerjapraktek->user->nama_lengkap }}
                                             </option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
+                                    <input type="hidden" name="id" value="{{ $id_kerjapraktek }}">
                                 </div>
 
                             </div>
@@ -57,7 +58,7 @@
                             </button>
                         </form>
 
-                        <form action="{{ route('adminAbsensi.updateall') }}" class="px-8 sm:mx-auto my-0" method="post">
+                        <form action="{{ route('adminAbsensi.updateall.detail', $id_kerjapraktek) }}" class="px-8 sm:mx-auto my-0" method="post">
                             @csrf
                             @method('PATCH')
                             <button type="submit"
@@ -126,7 +127,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="text-sm leading-5 text-gray-500">
-                                                <form action="{{ route('adminAbsensi.update', $value->id) }}"
+                                                <form action="{{ route('adminAbsensi.update.detail', $value->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('PATCH')

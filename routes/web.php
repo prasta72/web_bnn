@@ -54,6 +54,12 @@ Route::prefix('admin')->group(function () {
 
         // absensi
         Route::get('/absensi', [AbsensiController::class, 'index'])->name('adminAbsensi');
+        Route::get('/absensi/all', [AbsensiController::class, 'indexAll'])->name('adminAbsensi.all');
+        Route::get('/absensi/detail/{id}', [AbsensiController::class, 'adminAbsensiDetail'])->name('adminAbsensi.Detail');
+        Route::patch('/absensi/update/detail/{id}', [AbsensiController::class, 'updateDetail'])->name('adminAbsensi.update.detail');
+        Route::patch('/absensi/update-all/detail/{id}', [AbsensiController::class, 'updateallDetail'])->name('adminAbsensi.updateall.detail');
+        Route::get('/absensi/search-date/detail', [AbsensiController::class, 'searchDateDetail'])->name('adminAbsensi.searchDate.detail');
+
         Route::patch('/absensi/update/{id}', [AbsensiController::class, 'update'])->name('adminAbsensi.update');
         Route::patch('/absensi/update-all', [AbsensiController::class, 'updateall'])->name('adminAbsensi.updateall');
         Route::get('/absensi/search-date', [AbsensiController::class, 'searchDate'])->name('adminAbsensi.searchDate');
