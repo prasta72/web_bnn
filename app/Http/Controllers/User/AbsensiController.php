@@ -46,7 +46,7 @@ class AbsensiController extends Controller
 
     public function searchDate(Request $request){
 
-        $this->validate($request,[
+           $this->validate($request,[
             'date' => 'required|date',
            ]);
            $date = Carbon::parse($request->date);

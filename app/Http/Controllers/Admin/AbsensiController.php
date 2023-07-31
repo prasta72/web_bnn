@@ -173,27 +173,35 @@ class AbsensiController extends Controller
 
     public function searchDate(Request $request)
     {
+        // dd($request->all());
         $nama_mahasiswa = Absensi::with(['kerjapraktek.user'])->select('kerjapraktek_id')->distinct()->get();
 
         $kp_id = $request->nama_mahasiswa;
 
-
         $date = Carbon::parse($request->date);
-        $absensi = Absensi::query();
-        // dd($date);
+        $absensis = Absensi::query();
+        // dd($date->format('m'));
+        // $absensi->whereMonth('waktu', '=', $date->format('m'));
+        // dd($absensi->get());
         // dd($absensi);
 
         if($request->date != null) {
-            $absensi->whereMonth('waktu', '=', $date->format('m'));
+            $absensis->whereMonth('waktu', '=', $date->format('m'));
         }
 
         // dd($absensi);
-
-        $absensi = $absensi->where('kerjapraktek_id', $kp_id)
+        // if($)
+        if($request->nama_mahasiswa != null){
+             $absensi = $absensis->where('kerjapraktek_id', $kp_id)
             ->orderBy('id', 'ASC')
             ->paginate(10);
+        }else{
+            $absensi = $absensis->orderBy('id', 'ASC')
+            ->paginate(10);;
+        }
 
         // dd($absensi->count());
+        // dd($absensi);
 
         return view('pages.admin.absensi.index', compact('absensi', 'nama_mahasiswa'));
     }
